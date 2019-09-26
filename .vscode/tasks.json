@@ -2,36 +2,55 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Complie C",
             "type": "shell",
-            "label": "gcc-8 build active file",
-            "command": "/usr/local/bin/gcc-8",
-            "args": [
-                "-g",
-                "${file}",
-                "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+            "command": "gcc-8",
+            "args":[
+                  "${file}",
+                  "-o",
+                  "${fileDirname}/${fileBasenameNoExtension}",
+                  "-g",
+                  "-Wall"
             ],
-            "options": {
-                "cwd": "/usr/local/bin"
-            }
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher":"$gcc"
         },
         {
+            "label": "Complie C++",
             "type": "shell",
-            "label": "g++-8 build active file",
-            "command": "/usr/local/bin/g++-8",
-            "args": [
-                "-g",
+            "command": "g++-8",
+            "args":[
                 "${file}",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "${fileDirname}/${fileBasenameNoExtension}",
+                "-g",
+                "-Wall",
+                "-std=c++17"
             ],
-            "options": {
-                "cwd": "/usr/local/bin"
+            "group": {
+                "kind": "build",
+                "isDefault": true
             },
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "group": "build"
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher":"$gcc"
         }
     ]
 }
