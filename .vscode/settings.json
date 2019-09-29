@@ -1,7 +1,8 @@
 {
     "files.associations": {
         "string": "cpp",
-        "istream": "cpp"
+        "istream": "cpp",
+        "10012.C": "cpp"
     }
     
 }
