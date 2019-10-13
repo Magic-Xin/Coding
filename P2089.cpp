@@ -1,20 +1,62 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int n, k;
-int a[10] = {0};
+int in, p = 0;
+int a, b, c, d, e, f, g, h, i, j;
 
-void plan_2(){
-    
-}
-
-void plan_1(){
-    for(int i = 9 ; i >= 0 ; i--){
-        while(a[i] < 4){
-            a[i]++;
-            if(a[0] + a[1] + a[2] + a[3] + a[4] + a[5] + a[6] + a[7] + a[8] + a[9] == n){
-                plan_2();
+int main(){
+    cin >> in;
+    for(a = 1 ; a < 4 ; a++){
+        for(b = 1 ; b < 4 ; b++){
+            for(c = 1 ; c < 4 ; c++){
+                for(d = 1 ; d < 4 ; d++){
+                    for(e = 1 ; e < 4 ; e++){
+                        for(f = 1 ; f < 4 ; f++){
+                            for(g = 1 ; g < 4 ; g++){
+                                for(h = 1 ; h < 4 ; h++){
+                                    for(i = 1 ; i < 4 ; i++){
+                                        for(j = 1 ; j < 4 ; j++){
+                                            if(a + b + c + d + e + f + g + h + i + j == in){
+                                                p++;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
+    if(p == 0){
+        cout << p;
+    }
+    else{
+        cout << p << endl;
+        for(a = 1 ; a < 4 ; a++){
+            for(b = 1 ; b < 4 ; b++){
+                for(c = 1 ; c < 4 ; c++){
+                    for(d = 1 ; d < 4 ; d++){
+                        for(e = 1 ; e < 4 ; e++){
+                            for(f = 1 ; f < 4 ; f++){
+                                for(g = 1 ; g < 4 ; g++){
+                                    for(h = 1 ; h < 4 ; h++){
+                                        for(i = 1 ; i < 4 ; i++){
+                                            for(j = 1 ; j < 4 ; j++){
+                                                if(a + b + c + d + e + f + g + h + i + j == in){
+                                                    cout << a << " " << b << " " << c << " " << d << " " << e << " " << f << " " << g << " " << h << " " << i << " " << j << endl;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return 0;
 }
