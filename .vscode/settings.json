@@ -21,7 +21,8 @@
         "unordered_set": "cpp",
         "valarray": "cpp",
         "vector": "cpp",
-        "bits/stdc++.h": "cpp"
+        "bits/stdc++.h": "cpp",
+        "chrono": "cpp"
     }
     
 }
