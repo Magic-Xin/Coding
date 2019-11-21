@@ -7,6 +7,7 @@ int n;
 void out(char a, char b, char c, int k){
     if(k == 1){
         cout << k << ":" << a << "->" << c << endl; 
+        return;
     }
     out(a, c, b, k - 1);
     cout << k << ":" << a << "->" << c << endl;
