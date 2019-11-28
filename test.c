@@ -1,28 +1,27 @@
-#include<stdio.h>
+#include <stdio.h>
 
-int n;
+int min = 99999, max = -99999;
+float ave = 0;
 
-int root(int n){
-    int temp = 0;
-    while(n != 0){
-        temp += n % 10;
-        n /= 10;
+void count(int n){
+    if(n < min){
+        min = n;
     }
-    if(temp >= 10){
-        temp = root(temp);
+    if(n > max){
+        max = n;
     }
-    return temp;
+    ave += n;
+    return;
 }
 
 int main(){
-    int i = 0, j;
-    int a[1000];
-    while(scanf("%d", &n) && n != 0){
-        a[i] = root(n);
-        i++;
+    int n, i;
+    scanf("%d", &n);
+    int a[n];
+    for(i = 0 ; i < n ; i++){
+        scanf("%d", &a[i]);
+        count(a[i]);
     }
-    for(j = 0 ; j < i ; j++){
-        printf("%d\n", a[j]);
-    }
+    printf("%d %d %.2f", max, min, ave /= n);
     return 0;
 }
