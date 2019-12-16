@@ -1,6 +1,5 @@
 #include<stdio.h>
 
-
 int main(){
     int m, n, i, j, k;
     int temp, r;
@@ -32,6 +31,3 @@ int main(){
     printf("no");
     return 0;
 }
-
-
-
