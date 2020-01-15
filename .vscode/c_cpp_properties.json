@@ -14,14 +14,18 @@
             "intelliSenseMode": "msvc-x64",
             "browse": {
                 "path": [
-                    "${workspaceFolder}"
+                    "${workspaceFolder}",
+                    "/usr/local/Cellar/gcc@8/8.3.0/include/**",
+                    "/usr/local/Cellar/gcc@8/8.3.0/lib/gcc/8/**"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
             },
             "includePath": [
                 "${default}",
-                "/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/**"
+                "/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/**",
+                "/usr/local/Cellar/gcc@8/8.3.0/include/**",
+                "/usr/local/Cellar/gcc@8/8.3.0/lib/gcc/8/**"
             ]
         }
     ],
