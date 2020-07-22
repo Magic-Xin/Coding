@@ -4,7 +4,7 @@
         {
             "label": "Complie C",
             "type": "shell",
-            "command": "gcc-8",
+            "command": "gcc",
             "args":[
                   "${file}",
                   "-o",
@@ -29,7 +29,7 @@
         {
             "label": "Complie C++",
             "type": "shell",
-            "command": "g++-8",
+            "command": "g++",
             "args":[
                 "${file}",
                 "-o",

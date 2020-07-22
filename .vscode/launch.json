@@ -11,7 +11,7 @@
                "cwd": "${workspaceFolder}",
                "environment": [],
                "externalConsole": false,
-               "miDebuggerPath":"/usr/local/Cellar/gdb/8.3/bin/gdb",
+               "miDebuggerPath":"C:/MinGW/bin/gdb.exe",
                "MIMode": "gdb",
                "preLaunchTask": "Complie C",
                "internalConsoleOptions": "neverOpen"
@@ -26,7 +26,7 @@
                "cwd": "${workspaceFolder}",
                "environment": [],
                "externalConsole": false,
-               "miDebuggerPath":"/usr/local/Cellar/gdb/8.3/bin/gdb",
+               "miDebuggerPath":"C:/MinGW/bin/gdb.exe",
                "MIMode": "gdb",
                "preLaunchTask": "Complie C++",
                "internalConsoleOptions": "neverOpen"

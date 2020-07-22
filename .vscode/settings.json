@@ -23,7 +23,9 @@
         "vector": "cpp",
         "bits/stdc++.h": "cpp",
         "chrono": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "iosfwd": "cpp",
+        "ostream": "cpp"
     }
     
 }
