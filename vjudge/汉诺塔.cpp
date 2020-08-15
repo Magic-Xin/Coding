@@ -4,9 +4,9 @@ using namespace std;
 char a, b, c;
 int n;
 
-void out(char a, char b, char c, int k){
-    if(k == 1){
-        cout << k << ":" << a << "->" << c << endl; 
+void out(char a, char b, char c, int k) {
+    if (k == 1) {
+        cout << k << ":" << a << "->" << c << endl;
         return;
     }
     out(a, c, b, k - 1);
@@ -15,7 +15,7 @@ void out(char a, char b, char c, int k){
     return;
 }
 
-int main(){
+int main() {
     cin >> n >> a >> b >> c;
     out(a, b, c, n);
     return 0;
