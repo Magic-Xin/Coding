@@ -8,24 +8,18 @@
                 "/Library/Frameworks",
                 "${workspaceFolder}/**"
             ],
-            "compilerPath": "/usr/local/Cellar/gcc@8/8.3.0/bin/g++-8",
+            "compilerPath": "/usr/bin/g++",
             "cStandard": "c11",
             "cppStandard": "c++17",
             "intelliSenseMode": "msvc-x64",
             "browse": {
-                "path": [
-                    "${workspaceFolder}",
-                    "/usr/local/Cellar/gcc@8/8.3.0/include/**",
-                    "/usr/local/Cellar/gcc@8/8.3.0/lib/gcc/8/**"
-                ],
+                "path": ["${workspaceFolder}"],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
             },
             "includePath": [
                 "${default}",
-                "/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/**",
-                "/usr/local/Cellar/gcc@8/8.3.0/include/**",
-                "/usr/local/Cellar/gcc@8/8.3.0/lib/gcc/8/**"
+                "/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/**"
             ]
         }
     ],

@@ -1,6 +1,7 @@
 {
     "version": "0.2.0",
        "configurations": [
+           
            {
                "name": "(gdb) Launch C",
                "type": "cppdbg",
@@ -11,7 +12,7 @@
                "cwd": "${workspaceFolder}",
                "environment": [],
                "externalConsole": false,
-               "miDebuggerPath":"C:/MinGW/bin/gdb.exe",
+               "miDebuggerPath":"gdb",
                "MIMode": "gdb",
                "preLaunchTask": "Complie C",
                "internalConsoleOptions": "neverOpen"
@@ -26,7 +27,7 @@
                "cwd": "${workspaceFolder}",
                "environment": [],
                "externalConsole": false,
-               "miDebuggerPath":"C:/MinGW/bin/gdb.exe",
+               "miDebuggerPath":"gdb",
                "MIMode": "gdb",
                "preLaunchTask": "Complie C++",
                "internalConsoleOptions": "neverOpen"
