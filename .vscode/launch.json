@@ -1,37 +1,22 @@
 {
     "version": "0.2.0",
-       "configurations": [
-           
-           {
-               "name": "(gdb) Launch C",
-               "type": "cppdbg",
-               "request": "launch",
-               "program": "${fileDirname}/${fileBasenameNoExtension}",
-               "args": [],
-               "stopAtEntry": true, //设为true时程序将暂停在程序入口处，相当于在main上打断点
-               "cwd": "${workspaceFolder}",
-               "environment": [],
-               "externalConsole": false,
-               "miDebuggerPath":"gdb",
-               "MIMode": "gdb",
-               "preLaunchTask": "Complie C",
-               "internalConsoleOptions": "neverOpen"
-           },
-           {
-               "name": "(gdb) Launch C++",
-               "type": "cppdbg",
-               "request": "launch",
-               "program": "${fileDirname}/${fileBasenameNoExtension}",
-               "args": [],
-               "stopAtEntry": false, //设为true时程序将暂停在程序入口处，相当于在main上打断点
-               "cwd": "${workspaceFolder}",
-               "environment": [],
-               "externalConsole": false,
-               "miDebuggerPath":"gdb",
-               "MIMode": "gdb",
-               "preLaunchTask": "Complie C++",
-               "internalConsoleOptions": "neverOpen"
-           }
-   
-       ]
-   }
+    "configurations": [
+        {
+            "name": "(lldb) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "logging": {
+                "trace": true,
+                "traceResponse": true,
+                "engineLogging": true
+            }
+        }
+    ]
+}

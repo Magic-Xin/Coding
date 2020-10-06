@@ -1,56 +1,23 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "Complie C",
+	"version": "2.0.0",
+	"tasks": [
+		{
+            "label": "Build with Clang",
             "type": "shell",
-            "command": "gcc",
-            "args":[
-                  "${file}",
-                  "-o",
-                  "${fileDirname}/${fileBasenameNoExtension}",
-                  "-g",
-                  "-Wall"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
-            "problemMatcher":"$gcc"
-        },
-        {
-            "label": "Complie C++",
-            "type": "shell",
-            "command": "g++",
-            "args":[
-                "${file}",
-                "-o",
-                "${fileDirname}/${fileBasenameNoExtension}",
+            "command": "clang++",
+            "args": [
+                "-std=c++17",
+                "-stdlib=libc++",
                 "-g",
-                "-Wall",
-                "-std=c++17"
+				"${file}",
+				"-o",
+				"${fileDirname}/${fileBasenameNoExtension}",
+				"--debug"
             ],
             "group": {
                 "kind": "build",
                 "isDefault": true
-            },
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": false
-            },
-            "problemMatcher":"$gcc"
+            }
         }
-    ]
+	]
 }
