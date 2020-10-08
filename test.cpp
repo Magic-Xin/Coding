@@ -1,19 +1,17 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
-	int n, j = 1, i = 32;
-	unsigned long long m = 0;
-	cin >> n;
-	while(n){
-		m += (n%2)*j;
-		n /= 2;
-		j *= 10;
-		i--;
+int main()
+{
+	int a, b, c, res;
+	cin >> a >> b;
+	c = a * b;
+	res = 0;
+	while (c)
+	{
+		res = c % 10 + res * 10;
+		c /= 10;
 	}
-	while(i--){
-		cout << '0';
-	}
-	cout << m;
+	cout << res;
 	return 0;
 }
