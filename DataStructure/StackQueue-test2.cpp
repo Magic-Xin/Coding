@@ -16,7 +16,8 @@ typedef struct
 } SqStack;
 
 typedef struct QNode{
-    ElemType data;
+    ElemType num;
+    ElemType time;
     struct QNode *next;
 }QNode, *QueuePtr;
 
@@ -34,26 +35,28 @@ Status InitQueue(LinkQueue &Q){
     return OK;
 }
 
-Status EnQueue(LinkQueue &Q, ElemType e){
+Status EnQueue(LinkQueue &Q, ElemType e, ElemType f){
     QueuePtr p;
     p = (QueuePtr)malloc(sizeof(QNode));
     if(!p){
         return ERROR;
     }
-    p->data = e;
+    p->num = e;
+    p->time = f;
     p->next = NULL;
     Q.rear->next = p;
     Q.rear = p;
     return OK;
 }
 
-Status DeQueue(LinkQueue &Q, ElemType e){
+Status DeQueue(LinkQueue &Q, ElemType &e, ElemType &f){
     if(Q.front == Q.rear){
         return ERROR;
     }
     QueuePtr p;
     p = Q.front->next;
-    e = p->data;
+    e = p->num;
+    f = p->time;
     Q.front->next = p->next;
     if(Q.rear == p){
         Q.rear = Q.front;
@@ -101,10 +104,42 @@ Status Pop(SqStack &S, ElemType &e){
 
 int main()
 {
-    SqStack S, St;
+    SqStack S, St, So, Sto;
     LinkQueue Q;
     InitStack(S);
     InitStack(St);
+    InitStack(So);
+    InitStack(Sto);
     InitQueue(Q);
+    int max;
+    double price;
+    cin >> max >> price;
+    int s, num, time, n, t;
+    while(cin >> s >> num >> time){
+        if(s == 0 && num == 0 && time == 0){
+            break;
+        }
+        if(s == 0){
+            if(S.length < max){
+                Push(S, num);
+                Push(St, time);
+            }
+            else {
+                EnQueue(Q, num, time);
+            }
+        }
+        else {
+            Pop(S, n);
+            Pop(So, t);
+            while(n != num){
+                Push(St, n);
+                Push(Sto, t);
+                Pop(S, n);
+                Pop(St, t);
+            }
+            double sum = (time - t) * price;
+            cout << n << " " << sum << endl;
+        }
+    }
     return 0;
 }
