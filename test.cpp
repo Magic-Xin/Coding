@@ -3,15 +3,17 @@ using namespace std;
 
 int main()
 {
-	int a, b, c, res;
+	int a, b, c;
+	vector<int> res;
 	cin >> a >> b;
 	c = a * b;
-	res = 0;
 	while (c)
 	{
-		res = c % 10 + res * 10;
+		res.push_back(c%10);
 		c /= 10;
 	}
-	cout << res;
+	for(auto i:res){
+		cout << i;
+	}
 	return 0;
 }
