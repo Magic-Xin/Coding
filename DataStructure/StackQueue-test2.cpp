@@ -102,6 +102,10 @@ Status Pop(SqStack &S, ElemType &e){
     return OK;
 }
 
+Status Locate(LinkQueue Q, ElemType e){
+
+}
+
 int main()
 {
     SqStack S, St, So, Sto;
@@ -130,15 +134,21 @@ int main()
         }
         else {
             Pop(S, n);
-            Pop(So, t);
+            Pop(St, t);
             while(n != num){
-                Push(St, n);
+                Push(So, n);
                 Push(Sto, t);
                 Pop(S, n);
                 Pop(St, t);
             }
             double sum = (time - t) * price;
             cout << n << " " << sum << endl;
+            while(So.top != So.base){
+                Pop(So, n);
+                Pop(Sto, t);
+                Push(S, n);
+                Push(St, t);
+            }
         }
     }
     return 0;
