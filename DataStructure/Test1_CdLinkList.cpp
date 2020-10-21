@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <stdlib.h>
 #define Status int
 #define ElemType int
 #define ERROR 0
@@ -74,5 +75,5 @@ int main()
     }
     CreatCLinkList(L, a, n);
     Sort_Joseph(L, m, n);
-    return OK;
+    return 0;
 }
