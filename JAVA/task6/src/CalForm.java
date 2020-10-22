@@ -209,7 +209,7 @@ public class CalForm extends JFrame implements ActionListener {
         }
         if(oprator == 4){
             if(temp == 0){
-                t.setText("00000");
+                t.setText("0");
                 result = 0;
                 oprator = 0;
                 return;
@@ -218,7 +218,7 @@ public class CalForm extends JFrame implements ActionListener {
         }
         if(oprator == 5){
             if(temp == 0){
-                t.setText("00000");
+                t.setText("0");
                 result = 0;
                 oprator = 0;
                 return;
