@@ -50,7 +50,7 @@ Status PrintBTree(BTree BT)
 {
     if (BT != NULL)
     {
-        cout << BT->data << endl;
+        cout << BT->data << " ";
         PrintBTree(BT->lchild);
         PrintBTree(BT->rchild);
     }
