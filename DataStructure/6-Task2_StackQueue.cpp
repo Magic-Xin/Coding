@@ -1,25 +1,30 @@
 #include <iostream>
+#include <stdio.h>
 #include <stdlib.h>
 #define Status int
-#define ElemType int
 #define ERROR 0
 #define OK 1
-#define STACK_INIT_SIZE 100
-#define STACKINCREMENT 10
+#define STACK_INIT_SIZE 200
+#define STACKINCREMENT 20
 using namespace std;
+
+struct Car
+{
+    int num;
+    int time;
+};
 
 typedef struct
 {
-    ElemType *base;
-    ElemType *top;
+    Car *base;
+    Car *top;
     int stacksize;
     int length;
 } SqStack;
 
 typedef struct QNode
 {
-    ElemType num;
-    ElemType time;
+    Car QCar;
     struct QNode *next;
 } QNode, *QueuePtr;
 
@@ -40,7 +45,7 @@ Status InitQueue(LinkQueue &Q)
     return OK;
 }
 
-Status EnQueue(LinkQueue &Q, ElemType e, ElemType f)
+Status EnQueue(LinkQueue &Q, Car c)
 {
     QueuePtr p;
     p = (QueuePtr)malloc(sizeof(QNode));
@@ -48,15 +53,15 @@ Status EnQueue(LinkQueue &Q, ElemType e, ElemType f)
     {
         return ERROR;
     }
-    p->num = e;
-    p->time = f;
+    p->QCar.num = c.num;
+    p->QCar.time = c.time;
     p->next = NULL;
     Q.rear->next = p;
     Q.rear = p;
     return OK;
 }
 
-Status DeQueue(LinkQueue &Q, ElemType &e, ElemType &f)
+Status DeQueue(LinkQueue &Q, Car &c)
 {
     if (Q.front == Q.rear)
     {
@@ -64,8 +69,8 @@ Status DeQueue(LinkQueue &Q, ElemType &e, ElemType &f)
     }
     QueuePtr p;
     p = Q.front->next;
-    e = p->num;
-    f = p->time;
+    c.num = p->QCar.num;
+    c.time = p->QCar.time;
     Q.front->next = p->next;
     if (Q.rear == p)
     {
@@ -77,7 +82,7 @@ Status DeQueue(LinkQueue &Q, ElemType &e, ElemType &f)
 
 Status InitStack(SqStack &S)
 {
-    S.base = (ElemType *)malloc(STACK_INIT_SIZE * sizeof(ElemType));
+    S.base = (Car *)malloc(STACK_INIT_SIZE * sizeof(Car));
     if (!S.base)
     {
         return ERROR;
@@ -88,11 +93,11 @@ Status InitStack(SqStack &S)
     return OK;
 }
 
-Status Push(SqStack &S, ElemType e)
+Status Push(SqStack &S, Car e)
 {
     if (S.top - S.base >= S.stacksize)
     {
-        S.base = (ElemType *)realloc(S.base, (S.stacksize + STACKINCREMENT) * sizeof(ElemType));
+        S.base = (Car *)realloc(S.base, (S.stacksize + STACKINCREMENT) * sizeof(Car));
         if (!S.base)
         {
             return ERROR;
@@ -105,7 +110,7 @@ Status Push(SqStack &S, ElemType e)
     return OK;
 }
 
-Status Pop(SqStack &S, ElemType &e)
+Status Pop(SqStack &S, Car &e)
 {
     if (S.top == S.base)
     {
@@ -116,13 +121,13 @@ Status Pop(SqStack &S, ElemType &e)
     return OK;
 }
 
-Status Locate(LinkQueue Q, ElemType e)
+Status Locate(LinkQueue Q, int e)
 {
     QueuePtr p;
     p = Q.front->next;
     while (p)
     {
-        if (p->num == e)
+        if (p->QCar.num == e)
         {
             return 1;
         }
@@ -133,89 +138,91 @@ Status Locate(LinkQueue Q, ElemType e)
 
 int main()
 {
-    SqStack S, St, So, Sto;
+    Car temp;
+    SqStack S, So;
     LinkQueue Q;
     InitStack(S);
-    InitStack(St);
     InitStack(So);
-    InitStack(Sto);
     InitQueue(Q);
     int max;
     double price;
     cin >> max >> price;
-    int s, num, time, n, t;
+    int s, num, time;
     while (cin >> s >> num >> time)
     {
         if (s == 0 && num == 0 && time == 0)
         {
             break;
         }
+        temp.num = num;
+        temp.time = time;
         if (s == 0)
         {
             if (S.length < max)
             {
-                Push(S, num);
-                Push(St, time);
+                Push(S, temp);
             }
             else
             {
-                EnQueue(Q, num, time);
+                EnQueue(Q, temp);
             }
         }
         else
         {
             if (!Locate(Q, num))
             {
-                Pop(S, n);
-                Pop(St, t);
-                while (n != num)
+                Pop(S, temp);
+                while (temp.num != num)
                 {
-                    Push(So, n);
-                    Push(Sto, t);
-                    Pop(S, n);
-                    Pop(St, t);
+                    Push(So, temp);
+                    Pop(S, temp);
                 }
-                double sum = (time - t) * price;
+                double sum = (time - temp.time) * price;
                 printf("%d %.2lf\n", num, sum);
                 while (So.top != So.base)
                 {
-                    Pop(So, n);
-                    Pop(Sto, t);
-                    Push(S, n);
-                    Push(St, t);
+                    Pop(So, temp);
+                    Push(S, temp);
                 }
-                while(S.length < max){
-                    if(Q.front != Q.rear){
-                        DeQueue(Q, n, t);
-                        Push(S, n);
-                        Push(St, t);
+                while (S.length < max)
+                {
+                    if (Q.front != Q.rear)
+                    {
+                        DeQueue(Q, temp);
+                        Push(S, temp);
                     }
-                    else{
+                    else
+                    {
                         break;
                     }
                 }
             }
-            else{
-                DeQueue(Q, n, t);
-                while(n != num){
-                    EnQueue(Q, n, t);
-                    DeQueue(Q, n, t);
+            else
+            {
+                DeQueue(Q, temp);
+                while (temp.num != num)
+                {
+                    EnQueue(Q, temp);
+                    DeQueue(Q, temp);
                 }
             }
         }
     }
-    while(S.top != S.base){
-        Pop(S, n);
-        Push(So, n);
+    while (S.length)
+    {
+        Pop(S, temp);
+        Push(So, temp);
     }
-    while(So.top != So.base){
-        Pop(So, n);
-        cout << n << " ";
+    while (So.length)
+    {
+        Pop(So, temp);
+        cout << temp.num << " ";
     }
     cout << endl;
-    while(Q.front != Q.rear){
-        DeQueue(Q, n, t);
-        cout << n << " ";
+    while (Q.front != Q.rear)
+    {
+        DeQueue(Q, temp);
+        cout << temp.num << " ";
     }
     cout << endl;
     return 0;
