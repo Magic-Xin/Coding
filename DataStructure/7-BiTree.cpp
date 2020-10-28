@@ -57,33 +57,38 @@ Status PrintBTree(BTree BT)
     return OK;
 }
 
-Status CheckBTree(BTree BT, int target, TElemType &e){
-    if(target < 1){
-        return ERROR;
-    }
-    if(BT != NULL){
-        e = BT->data;
+Status CheckBTree(BTree BT, int num)
+{
+    if (BT != NULL)
+    {
         step++;
-        if(step >= target){
-            return OK;
+        if(step == num){
+            cout << BT->data << endl;
         }
-        CheckBTree(BT->lchild, target, e);
-        CheckBTree(BT->rchild, target, e);
+        CheckBTree(BT->lchild, num);
+        CheckBTree(BT->rchild, num);
     }
     return OK;
 }
 
-Status NumBTree(BTree BT, int &num){
-    if(BT != NULL){
-        num++;
-        NumBTree(BT->lchild, num);
-        NumBTree(BT->rchild, num);
+Status CountBTree(BTree BT, int &num)
+{
+    if (BT != NULL)
+    {
+        if (BT->lchild == NULL && BT->rchild == NULL)
+        {
+            num++;
+        }
+        CountBTree(BT->lchild, num);
+        CountBTree(BT->rchild, num);
     }
     return OK;
 }
 
-BTree InvertBTree(BTree &BT){
-    if(BT == NULL){
+BTree InvertBTree(BTree &BT)
+{
+    if (BT == NULL)
+    {
         return NULL;
     }
     BTNode *temp = BT->rchild;
@@ -96,16 +101,16 @@ int main()
 {
     BTree BT;
     InitBTree(BT);
-    char a[15] = {'A', 'B', 'C', '#', '#', 'D', 'E', '#', 'G', '#', '#', 'F', '#', '#', '#'};
+    char a[21] = {'A', 'B', 'D', 'H', '#', '#', 'I', '#', '#', 'E', '#', '#', 'C', 'F', '#', 'J', '#', '#', 'G', '#', '#'};
     CreatBTree(BT, a, sizeof(a));
+    PrintBTree(BT);
+    cout << endl;
 
-    TElemType e;
     step = 0;
-    CheckBTree(BT, 4, e);
-    cout << e << endl;
+    CheckBTree(BT, 4);
 
     int num = 0;
-    NumBTree(BT, num);
+    CountBTree(BT, num);
     cout << num << endl;
 
     BT = InvertBTree(BT);
