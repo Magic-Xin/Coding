@@ -103,8 +103,8 @@ int main()
     InitBTree(BT);
     char a[21] = {'A', 'B', 'D', 'H', '#', '#', 'I', '#', '#', 'E', '#', '#', 'C', 'F', '#', 'J', '#', '#', 'G', '#', '#'};
     CreatBTree(BT, a, sizeof(a));
-    PrintBTree(BT);
-    cout << endl;
+    //PrintBTree(BT);
+    //cout << endl;
 
     step = 0;
     CheckBTree(BT, 4);
