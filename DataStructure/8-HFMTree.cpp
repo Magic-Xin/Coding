@@ -5,42 +5,78 @@
 #define ERROR 0
 using namespace std;
 
-void oprate(char c){
-    if(c == 'I' && c == 'i'){
-        cout << c << endl;
-        return;
+typedef struct{
+    char data;
+    double weight;
+    int parent, lchild, rchild;
+}HTNode;
+
+void InitHFMTree(){
+    int n;
+    cout << "Please enter the number: " << endl;
+    cin >> n;
+    char a[n];
+    double b[n];
+    cout << "Please enter characters: " << endl;
+    for(int i = 0 ; i < n ; i++){
+        cin >> a[n];
     }
-    else if(c == 'C' && c == 'c'){
-        
+    cout << "Please enter weights: " << endl;
+    for(int i = 0 ; i < n ; i++){
+        cin >> b[n];
     }
-    else if(c == 'D' && c == 'd'){
-        
-    }
-    else if(c == 'P' && c == 'p'){
-        
-    }
-    else if(c == 'T' && c == 't'){
-        
-    }
-    else{
-        cout << "ERROR" << endl;
-    }
+    
+}
+
+void PrintMenu()
+{
+    cout << "Please choose your operation." << endl;
+    cout << "I : Initialization" << endl;
+    cout << "C : Encode" << endl;
+    cout << "D : Decode" << endl;
+    cout << "P : Print codefile" << endl;
+    cout << "T : Print Hafman Tree" << endl;
+    cout << "E : Exit" << endl;
     return;
 }
 
-int main(){
+void Operate(char c)
+{
+    if (c == 'i' || c == 'I')
+    {
+        InitHFMTree();
+    }
+    else if (c == 'c' || c == 'C')
+    {
+    }
+    else if (c == 'd' || c == 'D')
+    {
+    }
+    else if (c == 'p' || c == 'P')
+    {
+    }
+    else if (c == 't' || c == 'T')
+    {
+    }
+    else if (c == 'e' || c == 'E')
+    {
+        return;
+    }
+    else
+    {
+        cout << "ERROR" << endl;
+        return;
+    }
+}
+
+int main()
+{
     char c;
-    do{
-        cout << "Please choose your operation." << endl;
-        cout << "I : Initialization" << endl;
-        cout << "C : Encode" << endl;
-        cout << "D : Decode" << endl;
-        cout << "P : Print codefile" << endl;
-        cout << "T : Print Hafman Tree" << endl;
-        cout << "E : Exit" << endl;
-        c = getchar();
-        cout << c;
-        //oprate(c);
-    }while(c != 'E' || c != 'e');
+    do
+    {
+        PrintMenu();
+        cin >> c;
+        Operate(c);
+    } while (c != 'e' && c != 'E');
     return 0;
 }
