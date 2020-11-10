@@ -25,7 +25,7 @@ void InitHFMTree(){
     for(int i = 0 ; i < n ; i++){
         cin >> b[n];
     }
-    
+
 }
 
 void PrintMenu()
