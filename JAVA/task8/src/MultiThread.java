@@ -1,5 +1,5 @@
 public class MultiThread {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         final Object obj = new Object();
         MTFrame mtf = new MTFrame(obj);
         Runnable r1 = new TimeThread();

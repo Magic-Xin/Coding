@@ -7,12 +7,12 @@ public class MTFrame extends JFrame implements ActionListener {
     static public boolean isRun = false;
     Object obj;
 
-    JPanel mtFrame = new JPanel(new GridLayout(3,1,3,3));
-    JPanel Buttons = new JPanel(new GridLayout(1,2,3,3));
+    JPanel mtFrame = new JPanel(new GridLayout(3, 1, 3, 3));
+    JPanel Buttons = new JPanel(new GridLayout(1, 2, 3, 3));
     static JLabel time, words;
     JButton start, end;
 
-    MTFrame(Object obj){
+    MTFrame(Object obj) {
         this.obj = obj;
         this.setLayout(new BorderLayout());
 
@@ -37,14 +37,14 @@ public class MTFrame extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public void actionPerformed(ActionEvent e){
-        if(e.getSource() == start){
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == start) {
             isRun = true;
-            synchronized (obj){
+            synchronized (obj) {
                 obj.notify();
             }
         }
-        if(e.getSource() == end){
+        if (e.getSource() == end) {
             isRun = false;
         }
     }

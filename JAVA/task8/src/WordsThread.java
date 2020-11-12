@@ -1,11 +1,11 @@
 import java.util.Random;
 
-public class WordsThread implements Runnable{
-    String[] words = {"Per aspera, ad astra.", "El Psy Kongroo.", "闷声发大财", "Too young, too simple.", "NAÏVE"};
+public class WordsThread implements Runnable {
+    String[] words = { "Per aspera, ad astra.", "El Psy Kongroo.", "闷声发大财", "Too young, too simple.", "NAÏVE" };
     Random df = new Random();
     Object obj;
 
-    WordsThread(Object obj){
+    WordsThread(Object obj) {
         this.obj = obj;
     }
 
