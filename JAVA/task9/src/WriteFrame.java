@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 
-public class WriteFrame extends JFrame implements ActionListener {
+public class WriteFrame extends JFrame implements ActionListener, Runnable{
 
     JLabel num, name, sex, clas, cn, math, eng, pe, status;
     JTextField num_t, name_t, sex_t, clas_t, cn_t, math_t, eng_t, pe_t;
@@ -13,7 +13,7 @@ public class WriteFrame extends JFrame implements ActionListener {
     File fl = new File(dir);
     FileWriter fw;
 
-    public void createFrame() {
+    public void run() {
         this.setLayout(new GridLayout(3, 1, 3, 3));
 
         JPanel input = new JPanel(new FlowLayout());

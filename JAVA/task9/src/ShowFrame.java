@@ -15,7 +15,6 @@ public class ShowFrame extends JFrame implements ActionListener {
     DefaultTableModel update_table;
     JScrollPane scrollPane;
 
-    WriteFrame wf = new WriteFrame();
     String[] colNames;
     String[][] data;
 
@@ -62,7 +61,10 @@ public class ShowFrame extends JFrame implements ActionListener {
             readFile();
         }
         if (e.getSource() == write) {
-            wf.createFrame();
+            //多线程优化资源占用
+            Runnable r = new WriteFrame();
+            Thread t = new Thread(r);
+            t.start();
         }
         if (e.getSource() == delete) {
             if (fl.exists()) {
