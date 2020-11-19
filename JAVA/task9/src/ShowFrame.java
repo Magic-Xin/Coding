@@ -7,6 +7,8 @@ import java.io.*;
 public class ShowFrame extends JFrame implements ActionListener {
     String dir = "Students.txt";
     File fl = new File(dir);
+
+    static boolean isRun = false;
     int n;
 
     JButton read, write, delete;
@@ -19,12 +21,12 @@ public class ShowFrame extends JFrame implements ActionListener {
     String[][] data;
 
     ShowFrame() {
-        n = getline(fl);
+        n = getLine(fl);
         this.setLayout(new GridLayout(3, 1, 3, 3));
 
         colNames = new String[] { "学号", "姓名", "性别", "班级", "语文", "数学", "英语", "体育" };
         data = new String[n][8];
-        getdata(fl, data);
+        getData(fl, data);
 
         update_table = new DefaultTableModel(data, colNames);
         table = new JTable(update_table);
@@ -61,26 +63,31 @@ public class ShowFrame extends JFrame implements ActionListener {
             readFile();
         }
         if (e.getSource() == write) {
-            //多线程优化资源占用
-            Runnable r = new WriteFrame();
-            Thread t = new Thread(r);
-            t.start();
+            if (isRun) {
+                label.setText("窗口运行中");
+            } else {
+                Runnable r = new WriteFrame();
+                Thread t = new Thread(r);
+                t.start();
+            }
         }
         if (e.getSource() == delete) {
             if (fl.exists()) {
-                fl.delete();
-                readFile();
-                label.setText("删除成功");
+                if (fl.delete()) {
+                    readFile();
+                    label.setText("删除成功");
+                } else {
+                    label.setText("删除失败");
+                }
             }
         }
     }
 
-    int getline(File fl) {
+    int getLine(File fl) {
         if (fl.exists()) {
             try {
                 FileReader fileReader = new FileReader(fl);
                 LineNumberReader lineNumberReader = new LineNumberReader(fileReader);
-                lineNumberReader.skip(Long.MAX_VALUE);
                 int lines = lineNumberReader.getLineNumber() + 1;
                 fileReader.close();
                 lineNumberReader.close();
@@ -92,7 +99,7 @@ public class ShowFrame extends JFrame implements ActionListener {
         return 0;
     }
 
-    void getdata(File fl, String[][] data) {
+    void getData(File fl, String[][] data) {
         if (fl.exists()) {
             try {
                 FileReader fr = new FileReader(fl);
@@ -101,9 +108,7 @@ public class ShowFrame extends JFrame implements ActionListener {
                 for (int i = 0; i < n; i++) {
                     if ((str = br.readLine()) != null) {
                         String[] temp = str.split(",");
-                        for (int j = 0; j < 8; j++) {
-                            data[i][j] = temp[j];
-                        }
+                        System.arraycopy(temp, 0, data[i], 0, 8);
                     }
                 }
                 br.close();
@@ -115,9 +120,9 @@ public class ShowFrame extends JFrame implements ActionListener {
 
     void readFile() {
         fl = new File(dir);
-        n = getline(fl);
+        n = getLine(fl);
         data = new String[n][8];
-        getdata(fl, data);
+        getData(fl, data);
         update_table.setDataVector(data, colNames);
         scrollPane.validate();
         if (n == 0) {

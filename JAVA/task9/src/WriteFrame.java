@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 
-public class WriteFrame extends JFrame implements ActionListener, Runnable{
+public class WriteFrame extends JFrame implements ActionListener, Runnable {
 
     JLabel num, name, sex, clas, cn, math, eng, pe, status;
     JTextField num_t, name_t, sex_t, clas_t, cn_t, math_t, eng_t, pe_t;
@@ -14,6 +14,7 @@ public class WriteFrame extends JFrame implements ActionListener, Runnable{
     FileWriter fw;
 
     public void run() {
+        ShowFrame.isRun = true;
         this.setLayout(new GridLayout(3, 1, 3, 3));
 
         JPanel input = new JPanel(new FlowLayout());
@@ -67,8 +68,15 @@ public class WriteFrame extends JFrame implements ActionListener, Runnable{
 
         setVisible(true);
         setSize(500, 400);
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                ShowFrame.isRun = false;
+                dispose();
+            }
+        });
     }
 
     @Override
