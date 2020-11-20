@@ -88,6 +88,7 @@ public class ShowFrame extends JFrame implements ActionListener {
             try {
                 FileReader fileReader = new FileReader(fl);
                 LineNumberReader lineNumberReader = new LineNumberReader(fileReader);
+                lineNumberReader.skip(Long.MAX_VALUE);
                 int lines = lineNumberReader.getLineNumber() + 1;
                 fileReader.close();
                 lineNumberReader.close();

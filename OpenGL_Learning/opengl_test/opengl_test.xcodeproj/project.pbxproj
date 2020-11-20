@@ -13,7 +13,6 @@
 		6F538CA12566D9020047CA49 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F538CA02566D9020047CA49 /* libglfw3.a */; };
 		6F538CA72566DAFE0047CA49 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F538CA62566DAFD0047CA49 /* Cocoa.framework */; };
 		6F538CAA2566DB1B0047CA49 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F538CA92566DB1B0047CA49 /* IOKit.framework */; };
-		6F538CB22566E2520047CA49 /* glad.c in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F538CB12566E2520047CA49 /* glad.c */; };
 		6F538CB52566E2680047CA49 /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = 6F538CB42566E2680047CA49 /* glad.c */; };
 /* End PBXBuildFile section */
 
@@ -38,7 +37,6 @@
 		6F538CA02566D9020047CA49 /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglfw3.a; path = ../../../../../../usr/local/Cellar/glfw/3.3.2/lib/libglfw3.a; sourceTree = "<group>"; };
 		6F538CA62566DAFD0047CA49 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6F538CA92566DB1B0047CA49 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
-		6F538CB12566E2520047CA49 /* glad.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = glad.c; path = ../../../../GLTools/glad.c; sourceTree = "<group>"; };
 		6F538CB42566E2680047CA49 /* glad.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = glad.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -47,7 +45,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F538CB22566E2520047CA49 /* glad.c in Frameworks */,
 				6F538CA12566D9020047CA49 /* libglfw3.a in Frameworks */,
 				6F538CAA2566DB1B0047CA49 /* IOKit.framework in Frameworks */,
 				6F538CA72566DAFE0047CA49 /* Cocoa.framework in Frameworks */,
@@ -89,7 +86,6 @@
 		6F538C9B2566D8F00047CA49 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6F538CB12566E2520047CA49 /* glad.c */,
 				6F538CA02566D9020047CA49 /* libglfw3.a */,
 				6F538CA92566DB1B0047CA49 /* IOKit.framework */,
 				6F538CA62566DAFD0047CA49 /* Cocoa.framework */,

@@ -1,3 +1,0 @@
-1,Mike,male,class-1,97,78,63,88
-2,John,male,class-1,88,78,99,61
-3,Lisa,female,class-2,77,63,89,92
