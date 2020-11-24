@@ -85,7 +85,7 @@ public class ClientFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == connect) {
             if (!ConnectionThread.isRun) {
-                this.server_ip = ip_t.getText();
+                this.server_ip = ip_t.getText().trim();
                 ct = new ConnectionThread(show, scrollPane);
                 String str = this.nickname + " has connected to the server!\n";
                 ct.connect(this.server_ip, str);
@@ -95,6 +95,7 @@ public class ClientFrame extends JFrame implements ActionListener {
         if (e.getSource() == disconnect) {
             String temp = this.nickname + " has disconnected to the server!\n";
             ct.disconnect(temp);
+            ct = null;
         }
         if (e.getSource() == set) {
             if (ConnectionThread.isRun) {
@@ -104,6 +105,7 @@ public class ClientFrame extends JFrame implements ActionListener {
             } else {
                 this.nickname = name_t.getText();
                 show.append("Changed to: " + this.nickname + "\n");
+                show.setCaretPosition(show.getText().length());
                 scrollPane.validate();
             }
         }
@@ -122,6 +124,7 @@ public class ClientFrame extends JFrame implements ActionListener {
             ct.send_text(str);
         } else {
             show.append("Please connect to the server!\n");
+            show.setCaretPosition(show.getText().length());
             scrollPane.validate();
         }
         input_t.setText("");

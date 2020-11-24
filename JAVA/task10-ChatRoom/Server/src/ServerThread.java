@@ -14,7 +14,7 @@ public class ServerThread extends Thread {
 
     public void send(String str) {
         try {
-            cout = new PrintWriter(socket.getOutputStream());
+            cout = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
             cout.println(str);
             cout.flush();
         } catch (Exception e) {
@@ -27,9 +27,6 @@ public class ServerThread extends Thread {
             String input;
             cin = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             while ((input = cin.readLine()) != null) {
-                if (input == "exit") {
-                    break;
-                }
                 om.send_all(input);
             }
             close();

@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.net.*;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class ConnectionThread extends Thread {
@@ -23,8 +24,8 @@ public class ConnectionThread extends Thread {
         while (isRun) {
             try {
                 socket = new Socket(ip, 8765);
-                cin = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                cout = new PrintWriter(socket.getOutputStream());
+                cin = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
+                cout = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8));
                 String str;
                 send_text(cnt);
                 while ((str = cin.readLine()) != null) {
@@ -32,8 +33,9 @@ public class ConnectionThread extends Thread {
                         break;
                     }
                     byte[] decoded = Base64.getDecoder().decode(str);
-                    String deStr = new String(decoded);
+                    String deStr = new String(decoded, StandardCharsets.UTF_8);
                     show.append(deStr);
+                    show.setCaretPosition(show.getText().length());
                     scrollPane.validate();
                 }
                 cin.close();
@@ -44,6 +46,7 @@ public class ConnectionThread extends Thread {
             } catch (Exception e) {
                 e.printStackTrace();
                 show.append("Connection failed!\n");
+                show.setCaretPosition(show.getText().length());
                 scrollPane.validate();
                 isRun = false;
             }
@@ -57,29 +60,34 @@ public class ConnectionThread extends Thread {
         this.start();
     }
 
-    public void disconnect(String temp) {
+    public void disconnect(String str) {
         if (isRun) {
-            send_text(temp);
+            send_text(str);
             try {
                 sleep(500);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            cout.write("exit\n");
+            cout.write(null+"\n");
             cout.flush();
             isRun = false;
         }
     }
 
     public void send_text(String str) {
-        byte[] bytes = str.getBytes();
-        String encoded = Base64.getEncoder().encodeToString(bytes);
-        if (cout != null) {
-            cout.write(encoded + "\n");
-            cout.flush();
-        } else {
-            show.append("Connection lost!\n");
-            scrollPane.validate();
+        try {
+            byte[] bytes = str.getBytes(StandardCharsets.UTF_8);
+            String encoded = Base64.getEncoder().encodeToString(bytes);
+            if (cout != null) {
+                cout.write(encoded + "\n");
+                cout.flush();
+            } else {
+                show.append("Connection lost!\n");
+                show.setCaretPosition(show.getText().length());
+                scrollPane.validate();
+            }
+        } catch (Exception e){
+            e.printStackTrace();
         }
     }
 }

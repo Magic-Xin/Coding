@@ -15,7 +15,6 @@ public class OutputMessage {
 
     public void popThread(ServerThread t) {
         all_ServerThread.remove(t);
-        System.out.println("Thread deleted!");
     }
 
     public void send_all(String str) {
