@@ -68,7 +68,7 @@ public class ConnectionThread extends Thread {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            cout.write(null+"\n");
+            cout.write(null + "\n");
             cout.flush();
             isRun = false;
         }
@@ -86,7 +86,7 @@ public class ConnectionThread extends Thread {
                 show.setCaretPosition(show.getText().length());
                 scrollPane.validate();
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
