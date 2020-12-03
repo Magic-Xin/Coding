@@ -3,33 +3,44 @@ import java.net.*;
 
 public class ServerThread extends Thread {
     Socket socket;
-    BufferedReader cin;
-    PrintWriter cout;
+    ObjectInputStream ois;
     OutputMessage om;
+
+    User user = null;
+
+    boolean isRun = false;
 
     ServerThread(Socket socket, OutputMessage om) {
         this.socket = socket;
         this.om = om;
-    }
-
-    public void send(String str) {
-        try {
-            cout = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
-            cout.println(str);
-            cout.flush();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        this.isRun = true;
     }
 
     public void run() {
         try {
-            String input;
-            cin = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            while ((input = cin.readLine()) != null) {
-                om.send_all(input);
+            System.out.println("客户端：" + socket.getInetAddress().getHostAddress() + "已连接！");
+            ois = new ObjectInputStream(socket.getInputStream());
+            while (isRun) {
+                User temp = (User)ois.readObject();
+                switch (temp.status){
+                    case 0:
+                        this.user = temp;
+                        om.addUser(this.user);
+                        break;
+                    case 1:
+                        this.user = temp;
+                        break;
+                    case 2:
+                        om.changeUser(this.user, temp);
+                        this.user = temp;
+                        break;
+                    case 3:
+                        om.send_all(temp);
+                        close();
+                        return;
+                }
+                om.send_all(user);
             }
-            close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -37,11 +48,11 @@ public class ServerThread extends Thread {
 
     private void close() {
         try {
-            cin.close();
-            cout.close();
+            ois.close();
             socket.close();
-            om.popThread(this);
-            System.out.println("Client closed!");
+            om.popSocket(socket);
+            om.popUser(user);
+            this.isRun = false;
         } catch (Exception e) {
             e.printStackTrace();
         }

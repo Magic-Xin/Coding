@@ -15,7 +15,7 @@ public class ClientFrame extends JFrame implements ActionListener {
     String nickname = "Anymouse";
     String server_ip = "127.0.0.1";
 
-    ConnectionThread ct;
+    SendThread ct;
 
     ClientFrame() {
         this.setLayout(new BorderLayout());
@@ -84,12 +84,11 @@ public class ClientFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == connect) {
-            if (!ConnectionThread.isRun) {
+            if (!SendThread.isRun) {
                 this.server_ip = ip_t.getText().trim();
-                ct = new ConnectionThread(show, scrollPane);
-                String str = this.nickname + " has connected to the server!\n";
-                ct.connect(this.server_ip, str);
-                ConnectionThread.isRun = true;
+                ct = new SendThread(show, scrollPane, nickname);
+                ct.connect(this.server_ip);
+                SendThread.isRun = true;
             }
         }
         if (e.getSource() == disconnect) {
@@ -98,10 +97,10 @@ public class ClientFrame extends JFrame implements ActionListener {
             ct = null;
         }
         if (e.getSource() == set) {
-            if (ConnectionThread.isRun) {
+            if (SendThread.isRun) {
                 String temp = this.nickname + " has changed nickname to: " + name_t.getText() + "\n";
                 this.nickname = name_t.getText();
-                ct.send_text(temp);
+                ct.change_user(temp, nickname);
             } else {
                 this.nickname = name_t.getText();
                 show.append("Changed to: " + this.nickname + "\n");
@@ -118,10 +117,10 @@ public class ClientFrame extends JFrame implements ActionListener {
         if (input_t.getText().length() < 1) {
             return;
         }
-        if (ConnectionThread.isRun) {
+        if (SendThread.isRun) {
             String str;
             str = nickname + ": " + input_t.getText() + "\n";
-            ct.send_text(str);
+            ct.send_text(str,1);
         } else {
             show.append("Please connect to the server!\n");
             show.setCaretPosition(show.getText().length());

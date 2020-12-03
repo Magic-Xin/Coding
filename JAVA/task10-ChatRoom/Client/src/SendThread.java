@@ -9,7 +9,7 @@ public class SendThread extends Thread {
     Socket socket;
     ObjectInputStream cin;
     ObjectOutputStream cout;
-    String ip;
+    String ip, str;
     static boolean isRun = false;
 
     User user;
@@ -30,9 +30,19 @@ public class SendThread extends Thread {
             socket = new Socket(ip, 8765);
             cout = new ObjectOutputStream(socket.getOutputStream());
             cin = new ObjectInputStream(socket.getInputStream());
-            es.execute(new ReadThread(cin));
-            String str = user.id + " has connected to the server!\n";
+            str = user.id + " has connected to the server!\n";
+            sleep(500);
             send_text(str, 0);
+            while(isRun){
+                User temp = (User) cin.readObject();
+                System.out.println(temp.content);
+                str = temp.content;
+                byte[] decoded = Base64.getDecoder().decode(str);
+                String deStr = new String(decoded, StandardCharsets.UTF_8);
+                show.append(deStr);
+                show.setCaretPosition(show.getText().length());
+                scrollPane.validate();
+            }
         } catch (Exception e) {
             e.printStackTrace();
             show.append("Connection failed!\n");
@@ -65,7 +75,6 @@ public class SendThread extends Thread {
             byte[] bytes = str.getBytes(StandardCharsets.UTF_8);
             user.content = Base64.getEncoder().encodeToString(bytes);
             user.status = status;
-            System.out.println(user.status);
             cout.writeObject(user);
         } catch (Exception e) {
             e.printStackTrace();
