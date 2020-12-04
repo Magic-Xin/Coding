@@ -20,7 +20,6 @@ public class Server implements Runnable{
     @Override
     public void run() {
         try {
-            System.out.println("Client "+socket.getInetAddress().getHostAddress()+" has connected!");
             while (isRun){
                 ois = new ObjectInputStream(socket.getInputStream());
                 User user = (User) ois.readObject();
@@ -30,6 +29,7 @@ public class Server implements Runnable{
                         this.id = user.getId();
                         ut.addUser(socket, id);
                         ut.sendAll(user);
+                        ut.printAll();
                         break;
                     case 1:
                         String to_whom = user.getTo_whom();
@@ -48,16 +48,17 @@ public class Server implements Runnable{
                     case 2:
                         String new_id = user.getId();
                         if(!id.equals(new_id)){
+                            System.out.println(id+" has changed to "+new_id);
                             this.id = new_id;
                             ut.updateUser(socket, id);
                             ut.sendAll(user);
+                            ut.printAll();
                         }
                         break;
                     case 3:
                         ut.sendAll(user);
                         ut.removeUser(socket);
                         this.isRun = false;
-                        System.out.println("Client "+socket.getInetAddress().getHostAddress()+" has disconnected!");
                         break;
                 }
             }

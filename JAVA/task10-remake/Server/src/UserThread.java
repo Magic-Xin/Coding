@@ -11,10 +11,11 @@ public class UserThread {
 
     public void addUser(Socket socket, String id){
         this.all_client.put(socket, id);
+        System.out.println(id+" has connected!");
     }
 
     public void removeUser(Socket socket){
-        this.all_client.remove(socket);
+        System.out.println(this.all_client.remove(socket)+" has disconnected!");
     }
 
     public void updateUser(Socket socket, String id){
@@ -62,5 +63,19 @@ public class UserThread {
             return true;
         }
         return false;
+    }
+
+
+    public void printAll(){
+        Set<Socket> all_socket = all_client.keySet();
+        Iterator<Socket> it = all_socket.iterator();
+        System.out.println("All connected users:");
+        while(it.hasNext()){
+            Socket socket = it.next();
+            String id = all_client.get(socket);
+            if(id != null) {
+                System.out.println(id);
+            }
+        }
     }
 }
