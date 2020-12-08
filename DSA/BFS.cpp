@@ -1,47 +1,90 @@
 #include <iostream>
 #include <cstdlib>
 #include <queue>
+#include <stack>
+#include <cstring>
 using namespace std;
 
 typedef struct Node
 {
-    int x;
-    int y;
+    int x, y, step;
+    Node *pre;
 } Node;
 
 int m, n;
-int puz[1000][1000], visit[1000][1000];
+int puz[1000][1000] = {1}, vst[1000][1000] = {0};
+int movelist[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+int sum = 0;
+
+void printAll(Node *p)
+{
+    int step = p->step;
+    cout << "最短路线长度: " << step << endl;
+    stack<Node> temp;
+    while (p->pre != NULL)
+    {
+        temp.push(*p);
+        p = p->pre;
+    }
+    temp.push(*p);
+    cout << "最短路线: ";
+    while (temp.size() > 1)
+    {
+        cout << "(" << temp.top().x << "," << temp.top().y << ")" << "->";
+        temp.pop();
+    }
+    cout << "(" << temp.top().x << "," << temp.top().y << ")" << endl;
+    return;
+}
 
 void BFS()
 {
-    int move[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+    int min = INT_MAX;
     queue<Node> que;
-    Node node;
-    node.x = node.y = 0;
+    Node node = {0, 0, 0, NULL};
     que.push(node);
-    visit[0][0] = 0;
     while (!que.empty())
     {
         node = que.front();
         que.pop();
-        if (node.x == m - 1 && node.y == n - 1)
-        {
-            break;
-        }
+        puz[node.x][node.y] = 1;
         for (int i = 0; i < 4; i++)
         {
-            int dx = node.x + move[i][0];
-            int dy = node.y + move[i][1];
-            if ((dx >= 0 && dx <= m - 1) && (dy >= 0 && dy <= n - 1) && !puz[dx][dy] && visit[dx][dy] == -1)
+            int dx = node.x + movelist[i][0];
+            int dy = node.y + movelist[i][1];
+            Node next = {dx, dy, 0, NULL};
+            if ((dx >= 0 && dx < m) && (dy >= 0 && dy < n) && !puz[dx][dy])
             {
-                visit[dx][dy] = visit[node.x][node.y] + 1;
-                node.x = dx;
-                node.y = dy;
-                que.push(node);
+                Node *temp = new Node;
+                memcpy(temp, &node, sizeof(Node));
+                next.pre = temp;
+                next.step = node.step + 1;
+                puz[next.x][next.y] = 1;
+                if (next.x == m - 1 && next.y == n - 1)
+                {
+                    printAll(&next);
+                    return;
+                }
+                que.push(next);
             }
         }
     }
-    cout << visit[m-1][n-1];
+}
+
+void DFS(int x, int y){
+    if(x == m-1 && y == n-1){
+        sum++;
+        return;
+    }
+    for(int i = 0 ; i < 4 ; i++){
+        int dx = x + movelist[i][0];
+        int dy = y + movelist[i][1];
+        if((dx >= 0 && dx < m) && (dy >= 0 && dy < n) && !puz[dx][dy] && !vst[dx][dy]){
+            vst[dx][dy] = 1;
+            DFS(dx, dy);
+            vst[dx][dy] = 0;
+        }
+    }
     return;
 }
 
@@ -53,9 +96,10 @@ int main()
         for (int j = 0; j < n; j++)
         {
             cin >> puz[i][j];
-            visit[i][j] = -1;
         }
     }
+    DFS(0, 0);
+    cout << "总路线数量: " << sum << endl;
     BFS();
     return 0;
 }
