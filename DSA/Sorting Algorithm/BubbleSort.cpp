@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#define DEBUG
 using namespace std;
 
 void sort(int a[], int n)
@@ -21,6 +22,10 @@ void sort(int a[], int n)
 
 int main()
 {
+#ifdef DEBUG
+    int n = 5;
+    int a[n] = {4, 3, 1, 5, 2};
+#else
     int n;
     cin >> n;
     int a[n];
@@ -28,6 +33,7 @@ int main()
     {
         cin >> a[i];
     }
+#endif
     sort(a, n);
     for (int i = 0; i < n; i++)
     {
