@@ -30,7 +30,8 @@ void printAll(Node *p)
     cout << "最短路线: ";
     while (temp.size() > 1)
     {
-        cout << "(" << temp.top().x << "," << temp.top().y << ")" << "->";
+        cout << "(" << temp.top().x << "," << temp.top().y << ")"
+             << "->";
         temp.pop();
     }
     cout << "(" << temp.top().x << "," << temp.top().y << ")" << endl;
@@ -71,15 +72,19 @@ void BFS()
     }
 }
 
-void DFS(int x, int y){
-    if(x == m-1 && y == n-1){
+void DFS(int x, int y)
+{
+    if (x == m - 1 && y == n - 1)
+    {
         sum++;
         return;
     }
-    for(int i = 0 ; i < 4 ; i++){
+    for (int i = 0; i < 4; i++)
+    {
         int dx = x + movelist[i][0];
         int dy = y + movelist[i][1];
-        if((dx >= 0 && dx < m) && (dy >= 0 && dy < n) && !puz[dx][dy] && !vst[dx][dy]){
+        if ((dx >= 0 && dx < m) && (dy >= 0 && dy < n) && !puz[dx][dy] && !vst[dx][dy])
+        {
             vst[dx][dy] = 1;
             DFS(dx, dy);
             vst[dx][dy] = 0;
