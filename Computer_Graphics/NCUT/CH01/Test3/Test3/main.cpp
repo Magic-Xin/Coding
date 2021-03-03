@@ -9,7 +9,8 @@
 #include <GLUT/glut.h>
 
 void RenderScene(){
-    glPointSize(2);
+    glClear(GL_COLOR_BUFFER_BIT);
+    glPointSize(2.0f);
     glBegin(GL_POINTS);
     glVertex2f(0.0f, 0.5f);
     glVertex2f(0.5f, -0.5f);
