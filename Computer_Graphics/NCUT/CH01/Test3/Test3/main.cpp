@@ -8,7 +8,8 @@
 
 #include <GLUT/glut.h>
 
-void RenderScene(){
+void RenderScene()
+{
     glClear(GL_COLOR_BUFFER_BIT);
     glPointSize(2.0f);
     glBegin(GL_POINTS);
@@ -19,7 +20,8 @@ void RenderScene(){
     glFlush();
 }
 
-int main(int argc, char* argv[]){
+int main(int argc, char *argv[])
+{
     glutInit(&argc, argv);
     glutCreateWindow("Tripoint");
     glutDisplayFunc(RenderScene);
