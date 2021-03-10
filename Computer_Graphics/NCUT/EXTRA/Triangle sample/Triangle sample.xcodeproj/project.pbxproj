@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6F50295F25F8985000D5A54E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F50295E25F8985000D5A54E /* main.cpp */; };
+		6F50296825F8986800D5A54E /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F50296725F8986800D5A54E /* OpenGL.framework */; };
+		6F50296A25F8986C00D5A54E /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F50296925F8986C00D5A54E /* GLUT.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,8 @@
 /* Begin PBXFileReference section */
 		6F50295B25F8985000D5A54E /* Triangle sample */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Triangle sample"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F50295E25F8985000D5A54E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		6F50296725F8986800D5A54E /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		6F50296925F8986C00D5A54E /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +36,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F50296A25F8986C00D5A54E /* GLUT.framework in Frameworks */,
+				6F50296825F8986800D5A54E /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +49,7 @@
 			children = (
 				6F50295D25F8985000D5A54E /* Triangle sample */,
 				6F50295C25F8985000D5A54E /* Products */,
+				6F50296625F8986800D5A54E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +67,15 @@
 				6F50295E25F8985000D5A54E /* main.cpp */,
 			);
 			path = "Triangle sample";
+			sourceTree = "<group>";
+		};
+		6F50296625F8986800D5A54E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6F50296925F8986C00D5A54E /* GLUT.framework */,
+				6F50296725F8986800D5A54E /* OpenGL.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
