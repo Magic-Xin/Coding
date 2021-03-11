@@ -6,7 +6,12 @@
 //
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
+#ifdef __APPLE__
 #include <GLUT/glut.h>
+#else
+#include <GL/glut.h>
+#endif
+
 #include <cstdlib>
 
 float Zrotate[4] = {0.0f, 0.0f, 0.0f, 1.0f};

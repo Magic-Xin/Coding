@@ -6,8 +6,13 @@
 //
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
-#include <cstdlib>
+#ifdef __APPLE__
 #include <GLUT/glut.h>
+#else
+#include <GL/glut.h>
+#endif
+
+#include <cstdlib>
 
 #define WHITE glColor3f(1.0f, 1.0f, 1.0f)
 #define RED glColor3f(1.0f, 0.0f, 0.0f)

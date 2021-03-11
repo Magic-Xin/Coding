@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6FE6BA0E25F9A86D003158D3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6BA0D25F9A86D003158D3 /* main.cpp */; };
+		6FE6BA1725F9A877003158D3 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FE6BA1625F9A877003158D3 /* OpenGL.framework */; };
+		6FE6BA1925F9A87B003158D3 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FE6BA1825F9A87B003158D3 /* GLUT.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,8 @@
 /* Begin PBXFileReference section */
 		6FE6BA0A25F9A86D003158D3 /* Drawing Pad Demo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Drawing Pad Demo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FE6BA0D25F9A86D003158D3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		6FE6BA1625F9A877003158D3 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		6FE6BA1825F9A87B003158D3 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +36,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FE6BA1925F9A87B003158D3 /* GLUT.framework in Frameworks */,
+				6FE6BA1725F9A877003158D3 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +49,7 @@
 			children = (
 				6FE6BA0C25F9A86D003158D3 /* Drawing Pad Demo */,
 				6FE6BA0B25F9A86D003158D3 /* Products */,
+				6FE6BA1525F9A876003158D3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +67,15 @@
 				6FE6BA0D25F9A86D003158D3 /* main.cpp */,
 			);
 			path = "Drawing Pad Demo";
+			sourceTree = "<group>";
+		};
+		6FE6BA1525F9A876003158D3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6FE6BA1825F9A87B003158D3 /* GLUT.framework */,
+				6FE6BA1625F9A877003158D3 /* OpenGL.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -6,7 +6,11 @@
 //
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
-#include <GLUT/glut.h> //引入头文件
+#ifdef __APPLE__
+#include <GLUT/glut.h>
+#else
+#include <GL/glut.h>
+#endif //引入头文件
 
 void RenderScene(){
     glClear(GL_COLOR_BUFFER_BIT); //清除颜色缓冲
