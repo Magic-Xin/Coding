@@ -11,6 +11,7 @@
 
 float Zrotate[4] = {0.0f, 0.0f, 0.0f, 1.0f};
 float Xrotate[4] = {0.0f, 1.0f, 0.0f, 0.0f};
+const int winW = 400, winH = 400;
 
 void Reshape(int w, int h){
     float ratio = w * 1.0f / h;
@@ -94,7 +95,7 @@ void init(){
 
 int main(int argc, char* argv[]) {
     glutInit(&argc, argv);
-    glutInitWindowSize(400, 400);
+    glutInitWindowSize(winW, winH);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH | GLUT_MULTISAMPLE);
     glutCreateWindow("Triangle sample");
     init();
