@@ -49,12 +49,12 @@ void RenderScene(){
     glFlush();
 }
 
-void MenuProcess(int value){
+void ProcessMenu(int value){
     COLOR = value;
 }
 
 void CreateMenu(){
-    glutCreateMenu(MenuProcess);
+    glutCreateMenu(ProcessMenu);
     glutAddMenuEntry("White", 0);
     glutAddMenuEntry("Red", 1);
     glutAddMenuEntry("Green", 2);

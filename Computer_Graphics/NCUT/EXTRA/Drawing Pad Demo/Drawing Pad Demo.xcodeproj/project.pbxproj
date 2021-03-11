@@ -7,13 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6FE6BA0E25F9A86D003158D3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6BA0D25F9A86D003158D3 /* main.cpp */; };
-		6FE6BA1725F9A877003158D3 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FE6BA1625F9A877003158D3 /* OpenGL.framework */; };
-		6FE6BA1925F9A87B003158D3 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FE6BA1825F9A87B003158D3 /* GLUT.framework */; };
+		6FE6BA3225F9EE33003158D3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6BA3125F9EE33003158D3 /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		6FE6BA0825F9A86D003158D3 /* CopyFiles */ = {
+		6FE6BA2C25F9EE33003158D3 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -25,69 +23,55 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6FE6BA0A25F9A86D003158D3 /* Drawing Pad Demo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Drawing Pad Demo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6FE6BA0D25F9A86D003158D3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		6FE6BA1625F9A877003158D3 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		6FE6BA1825F9A87B003158D3 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		6FE6BA2E25F9EE33003158D3 /* Drawing Pad Demo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Drawing Pad Demo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FE6BA3125F9EE33003158D3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		6FE6BA0725F9A86D003158D3 /* Frameworks */ = {
+		6FE6BA2B25F9EE33003158D3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6FE6BA1925F9A87B003158D3 /* GLUT.framework in Frameworks */,
-				6FE6BA1725F9A877003158D3 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6FE6BA0125F9A86D003158D3 = {
+		6FE6BA2525F9EE33003158D3 = {
 			isa = PBXGroup;
 			children = (
-				6FE6BA0C25F9A86D003158D3 /* Drawing Pad Demo */,
-				6FE6BA0B25F9A86D003158D3 /* Products */,
-				6FE6BA1525F9A876003158D3 /* Frameworks */,
+				6FE6BA3025F9EE33003158D3 /* Drawing Pad Demo */,
+				6FE6BA2F25F9EE33003158D3 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		6FE6BA0B25F9A86D003158D3 /* Products */ = {
+		6FE6BA2F25F9EE33003158D3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6FE6BA0A25F9A86D003158D3 /* Drawing Pad Demo */,
+				6FE6BA2E25F9EE33003158D3 /* Drawing Pad Demo */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6FE6BA0C25F9A86D003158D3 /* Drawing Pad Demo */ = {
+		6FE6BA3025F9EE33003158D3 /* Drawing Pad Demo */ = {
 			isa = PBXGroup;
 			children = (
-				6FE6BA0D25F9A86D003158D3 /* main.cpp */,
+				6FE6BA3125F9EE33003158D3 /* main.cpp */,
 			);
 			path = "Drawing Pad Demo";
-			sourceTree = "<group>";
-		};
-		6FE6BA1525F9A876003158D3 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				6FE6BA1825F9A87B003158D3 /* GLUT.framework */,
-				6FE6BA1625F9A877003158D3 /* OpenGL.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6FE6BA0925F9A86D003158D3 /* Drawing Pad Demo */ = {
+		6FE6BA2D25F9EE33003158D3 /* Drawing Pad Demo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6FE6BA1125F9A86D003158D3 /* Build configuration list for PBXNativeTarget "Drawing Pad Demo" */;
+			buildConfigurationList = 6FE6BA3525F9EE33003158D3 /* Build configuration list for PBXNativeTarget "Drawing Pad Demo" */;
 			buildPhases = (
-				6FE6BA0625F9A86D003158D3 /* Sources */,
-				6FE6BA0725F9A86D003158D3 /* Frameworks */,
-				6FE6BA0825F9A86D003158D3 /* CopyFiles */,
+				6FE6BA2A25F9EE33003158D3 /* Sources */,
+				6FE6BA2B25F9EE33003158D3 /* Frameworks */,
+				6FE6BA2C25F9EE33003158D3 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -95,23 +79,23 @@
 			);
 			name = "Drawing Pad Demo";
 			productName = "Drawing Pad Demo";
-			productReference = 6FE6BA0A25F9A86D003158D3 /* Drawing Pad Demo */;
+			productReference = 6FE6BA2E25F9EE33003158D3 /* Drawing Pad Demo */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		6FE6BA0225F9A86D003158D3 /* Project object */ = {
+		6FE6BA2625F9EE33003158D3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
-					6FE6BA0925F9A86D003158D3 = {
+					6FE6BA2D25F9EE33003158D3 = {
 						CreatedOnToolsVersion = 12.4;
 					};
 				};
 			};
-			buildConfigurationList = 6FE6BA0525F9A86D003158D3 /* Build configuration list for PBXProject "Drawing Pad Demo" */;
+			buildConfigurationList = 6FE6BA2925F9EE33003158D3 /* Build configuration list for PBXProject "Drawing Pad Demo" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -119,29 +103,29 @@
 				en,
 				Base,
 			);
-			mainGroup = 6FE6BA0125F9A86D003158D3;
-			productRefGroup = 6FE6BA0B25F9A86D003158D3 /* Products */;
+			mainGroup = 6FE6BA2525F9EE33003158D3;
+			productRefGroup = 6FE6BA2F25F9EE33003158D3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6FE6BA0925F9A86D003158D3 /* Drawing Pad Demo */,
+				6FE6BA2D25F9EE33003158D3 /* Drawing Pad Demo */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		6FE6BA0625F9A86D003158D3 /* Sources */ = {
+		6FE6BA2A25F9EE33003158D3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6FE6BA0E25F9A86D003158D3 /* main.cpp in Sources */,
+				6FE6BA3225F9EE33003158D3 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		6FE6BA0F25F9A86D003158D3 /* Debug */ = {
+		6FE6BA3325F9EE33003158D3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -200,7 +184,7 @@
 			};
 			name = Debug;
 		};
-		6FE6BA1025F9A86D003158D3 /* Release */ = {
+		6FE6BA3425F9EE33003158D3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -252,7 +236,7 @@
 			};
 			name = Release;
 		};
-		6FE6BA1225F9A86D003158D3 /* Debug */ = {
+		6FE6BA3625F9EE33003158D3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -262,7 +246,7 @@
 			};
 			name = Debug;
 		};
-		6FE6BA1325F9A86D003158D3 /* Release */ = {
+		6FE6BA3725F9EE33003158D3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -275,25 +259,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6FE6BA0525F9A86D003158D3 /* Build configuration list for PBXProject "Drawing Pad Demo" */ = {
+		6FE6BA2925F9EE33003158D3 /* Build configuration list for PBXProject "Drawing Pad Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6FE6BA0F25F9A86D003158D3 /* Debug */,
-				6FE6BA1025F9A86D003158D3 /* Release */,
+				6FE6BA3325F9EE33003158D3 /* Debug */,
+				6FE6BA3425F9EE33003158D3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6FE6BA1125F9A86D003158D3 /* Build configuration list for PBXNativeTarget "Drawing Pad Demo" */ = {
+		6FE6BA3525F9EE33003158D3 /* Build configuration list for PBXNativeTarget "Drawing Pad Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6FE6BA1225F9A86D003158D3 /* Debug */,
-				6FE6BA1325F9A86D003158D3 /* Release */,
+				6FE6BA3625F9EE33003158D3 /* Debug */,
+				6FE6BA3725F9EE33003158D3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 6FE6BA0225F9A86D003158D3 /* Project object */;
+	rootObject = 6FE6BA2625F9EE33003158D3 /* Project object */;
 }
