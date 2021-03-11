@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6FE6BA3225F9EE33003158D3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6BA3125F9EE33003158D3 /* main.cpp */; };
+		6FE6BA3D25F9EF1E003158D3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6BA3B25F9EF1E003158D3 /* main.cpp */; };
+		6FE6BA3E25F9EF1E003158D3 /* Drawing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FE6BA3C25F9EF1E003158D3 /* Drawing.cpp */; };
+		6FE6BA4225F9EF5D003158D3 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FE6BA4125F9EF5D003158D3 /* OpenGL.framework */; };
+		6FE6BA4425F9EF62003158D3 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FE6BA4325F9EF62003158D3 /* GLUT.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +27,11 @@
 
 /* Begin PBXFileReference section */
 		6FE6BA2E25F9EE33003158D3 /* Drawing Pad Demo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Drawing Pad Demo"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6FE6BA3125F9EE33003158D3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		6FE6BA3A25F9EF1E003158D3 /* Drawing.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Drawing.hpp; sourceTree = "<group>"; };
+		6FE6BA3B25F9EF1E003158D3 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		6FE6BA3C25F9EF1E003158D3 /* Drawing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Drawing.cpp; sourceTree = "<group>"; };
+		6FE6BA4125F9EF5D003158D3 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		6FE6BA4325F9EF62003158D3 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +39,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FE6BA4425F9EF62003158D3 /* GLUT.framework in Frameworks */,
+				6FE6BA4225F9EF5D003158D3 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +52,7 @@
 			children = (
 				6FE6BA3025F9EE33003158D3 /* Drawing Pad Demo */,
 				6FE6BA2F25F9EE33003158D3 /* Products */,
+				6FE6BA4025F9EF5D003158D3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,9 +67,20 @@
 		6FE6BA3025F9EE33003158D3 /* Drawing Pad Demo */ = {
 			isa = PBXGroup;
 			children = (
-				6FE6BA3125F9EE33003158D3 /* main.cpp */,
+				6FE6BA3B25F9EF1E003158D3 /* main.cpp */,
+				6FE6BA3C25F9EF1E003158D3 /* Drawing.cpp */,
+				6FE6BA3A25F9EF1E003158D3 /* Drawing.hpp */,
 			);
 			path = "Drawing Pad Demo";
+			sourceTree = "<group>";
+		};
+		6FE6BA4025F9EF5D003158D3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6FE6BA4325F9EF62003158D3 /* GLUT.framework */,
+				6FE6BA4125F9EF5D003158D3 /* OpenGL.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,7 +139,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6FE6BA3225F9EE33003158D3 /* main.cpp in Sources */,
+				6FE6BA3E25F9EF1E003158D3 /* Drawing.cpp in Sources */,
+				6FE6BA3D25F9EF1E003158D3 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

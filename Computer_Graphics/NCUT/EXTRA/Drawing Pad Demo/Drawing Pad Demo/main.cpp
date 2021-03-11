@@ -7,9 +7,9 @@
 
 #include "Drawing.hpp"
 
-int main(int argc, char * argv[])
+int main(int argc, char *argv[])
 {
     Drawing d(argc, argv);
-    d.init("test", 800, 800);
+    d.init("Drawing Pad demo", 800, 800);
     return 0;
 }
