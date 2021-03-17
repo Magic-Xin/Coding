@@ -11,9 +11,9 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
-const int winW = 400, winH = 400;
+const int winW = 600, winH = 600;
 
-void CreateShader(unsigned int vertexShader, unsigned int fragShader, unsigned int shaderProgram)
+void CreateShader(unsigned int &vertexShader, unsigned int &fragShader, unsigned int &shaderProgram)
 {
     const char* vertexshaderSource = "#version 330 core\n"
         "layout (location = 0) in vec3 aPos;\n"
@@ -32,7 +32,6 @@ void CreateShader(unsigned int vertexShader, unsigned int fragShader, unsigned i
     vertexShader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertexShader, 1, &vertexshaderSource, NULL);
     glCompileShader(vertexShader);
-    
     
     fragShader = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fragShader, 1, &fragshaderSource, NULL);
@@ -57,13 +56,15 @@ void ProcessInput(GLFWwindow* window)
 void RenderScene(GLFWwindow* window)
 {
     float triangle[] = {
-         0.5f,  0.0f, 0.0f,
+        -0.5f,  0.5f, 0.0f,
         -0.5f, -0.5f, 0.0f,
-         0.5f, -0.5f, 0.0f
+         0.5f, -0.5f, 0.0f,
+         0.5f,  0.5f, 0.0f
     };
     
     unsigned int indices[] = {
-        0, 1, 2
+        0, 1, 3,
+        1, 2, 3
     };
     
     unsigned int vertexShader = 0, fragShader = 0, shaderProgram = 0;
@@ -86,16 +87,17 @@ void RenderScene(GLFWwindow* window)
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
     
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     while(!glfwWindowShouldClose(window))
     {
         ProcessInput(window);
-
+        
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
         
         glUseProgram(shaderProgram);
         glBindVertexArray(VAO);
-        glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         
         glfwSwapBuffers(window);
         glfwPollEvents();
@@ -116,7 +118,6 @@ int Init(GLFWwindow* window)
         std::cout << "Failed to initialize GLAD" << std::endl;
         return 0;
     }
-    glViewport(0, 0, winW, winH);
     glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
     return 1;
 }
@@ -126,10 +127,10 @@ int main(int argc, const char * argv[]) {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    #ifdef __APPLE__
+#ifdef __APPLE__
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-    #endif
-
+#endif
+    
     GLFWwindow* window = glfwCreateWindow(winW, winH, "LearnOpenGL", NULL, NULL);
     if(!Init(window))
     {
@@ -137,6 +138,6 @@ int main(int argc, const char * argv[]) {
     }
     RenderScene(window);
     glfwTerminate();
-
+    
     return 0;
 }
