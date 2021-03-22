@@ -10,6 +10,11 @@
 
 #include <cstdlib>
 #include <vector>
+#include <fstream>
+#include <cstring>
+#include <unistd.h>
+#include <iostream>
+
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
@@ -38,6 +43,9 @@ private:
     int winW, winH;
     float size;
     Color color, bgcolor;
+    
+    const int verify = 0x1a2b3c4d;
+    std::string filePath;
 
     std::vector<Points> points;
 
@@ -52,6 +60,7 @@ public:
     void RenderScene();
     void Reshape(int w, int h);
     void ProcessMenu(int value);
+    void ProcessSLMenu(int value);
     void ProcessColorMenu(int value);
     void ProcessBGMenu(int value);
     void ProcessSizeMenu(int value);

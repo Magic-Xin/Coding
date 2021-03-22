@@ -15,6 +15,9 @@ Drawing::Drawing(int argc, char *argv[])
     size = 1.0f;
     color.r = color.g = color.b = 1.0f;
     bgcolor.r = bgcolor.g = bgcolor.b = 0.0f;
+    filePath = getcwd(NULL, 0);
+    filePath += "/Data";
+    std::cout << filePath << std::endl;
 }
 
 void Drawing::init(const char *title, int w, int h)
@@ -84,6 +87,11 @@ extern "C" void bgMenuCallback(int value)
 extern "C" void sizeMenuCallback(int value)
 {
     Callback->ProcessSizeMenu(value);
+}
+
+extern "C" void slMenuCallback(int value)
+{
+    Callback->ProcessSLMenu(value);
 }
 
 extern "C" void MouseCallback(int button, int state, int x, int y)
@@ -244,10 +252,56 @@ void Drawing::ProcessSizeMenu(int value)
     size = (float)value;
 }
 
+void Drawing::ProcessSLMenu(int value)
+{
+    if(!value)
+    {
+        std::ofstream ofile(filePath.c_str(), std::ios::binary);
+        if(ofile.is_open() == false){
+            std::cout << "Open file fail!" << std::endl;
+            return;
+        }
+        ofile.write((char*)&verify, sizeof(int));
+        unsigned long Vlength = points.size();
+        ofile.write((char*)&Vlength, sizeof(unsigned long));
+        unsigned long Vsize = points.size()*sizeof(Points);
+        ofile.write((char*)&Vsize, sizeof(unsigned long));
+        ofile.write((char*)&points[0], Vsize);
+        ofile.write((char*)&verify, sizeof(int));
+        ofile.close();
+        std::cout << "Write succeed!" << std::endl;
+    }
+    else
+    {
+        std::ifstream ifile(filePath.c_str(), std::ios::binary);
+        int tempVerify;
+        unsigned long Vlength, Vsize;
+        ifile.read((char*)&tempVerify, sizeof(int));
+        if(tempVerify != verify)
+        {
+            std::cout << "Unknow format!" << std::endl;
+            return;
+        }
+        ifile.read((char*)&Vlength, sizeof(unsigned long));
+        ifile.read((char*)&Vsize, sizeof(unsigned long));
+        points.clear();
+        points.resize(Vlength);
+        ifile.read((char*)&points[0], Vsize);
+        ifile.read((char*)&tempVerify, sizeof(int));
+        if(tempVerify != verify)
+        {
+            std::cout << "Unknow format!" << std::endl;
+            return;
+        }
+        std::cout << "Read succeed!" << std::endl;
+        glutPostRedisplay();
+    }
+}
+
 void Drawing::createMenu()
 {
     ::Callback = this;
-    int Menu, colorMenu, bgMenu, sizeMenu;
+    int Menu, colorMenu, bgMenu, sizeMenu, slMenu;
 
     colorMenu = ::glutCreateMenu(::colorMenuCallback);
     glutAddMenuEntry("白色<-", 1);
@@ -269,11 +323,16 @@ void Drawing::createMenu()
         glutAddMenuEntry(ptr, i);
     }
     glutChangeToMenuEntry(1, "1<-", 1);
+    
+    slMenu = ::glutCreateMenu(::slMenuCallback);
+    glutAddMenuEntry("保存", 0);
+    glutAddMenuEntry("载入", 1);
 
     Menu = ::glutCreateMenu(::MenuCallback);
     glutAddSubMenu("背景颜色", bgMenu);
     glutAddSubMenu("画笔颜色", colorMenu);
     glutAddSubMenu("画笔大小", sizeMenu);
+    glutAddSubMenu("保存/载入", slMenu);
     glutAddMenuEntry("撤销", -1);
     glutAddMenuEntry("退出", 0);
 
