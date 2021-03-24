@@ -9,40 +9,52 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <string>
+#include <fstream>
+#include <sstream>
 #include <iostream>
 
 const int winW = 600, winH = 600;
 
-void CreateShader(unsigned int &vertexShader, unsigned int &fragShader, unsigned int &shaderProgram)
+void CreateShader(unsigned int &vertexShader, unsigned int &fragmentShader, unsigned int &shaderProgram)
 {
-    const char* vertexshaderSource = "#version 330 core\n"
-        "layout (location = 0) in vec3 aPos;\n"
-        "void main()\n"
-        "{\n"
-        "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-        "}\0";
+    const char* vertexPath = "./VertexShader.vs";
+    const char* fragmentPath = "./FragmentShader.fs";
+    std::string vertexSource, fragmentSource;
+    std::ifstream vertexFile, fragmentFile;
+    vertexFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+    fragmentFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
     
-    const char* fragshaderSource = "#version 330 core\n"
-        "out vec4 FragColor;\n"
-        "void main()\n"
-        "{\n"
-        "   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-        "}\0";
-    
+    try {
+        vertexFile.open(vertexPath);
+        fragmentFile.open(fragmentPath);
+        std::stringstream vStream, fStream;
+        vStream << vertexFile.rdbuf();
+        fStream << fragmentFile.rdbuf();
+        vertexFile.close();
+        fragmentFile.close();
+        vertexSource = vStream.str();
+        fragmentSource = fStream.str();
+    } catch (std::ifstream::failure e) {
+        std::cout << "FAILED TO READ SHADER" << std::endl;
+    }
+    const char* vShaderCode = vertexSource.c_str();
+    const char* fShaderCode = fragmentSource.c_str();
+
     vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertexShader, 1, &vertexshaderSource, NULL);
+    glShaderSource(vertexShader, 1, &vShaderCode, NULL);
     glCompileShader(vertexShader);
     
-    fragShader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragShader, 1, &fragshaderSource, NULL);
-    glCompileShader(fragShader);
+    fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+    glShaderSource(fragmentShader, 1, &fShaderCode, NULL);
+    glCompileShader(fragmentShader);
     
     shaderProgram = glCreateProgram();
     glAttachShader(shaderProgram, vertexShader);
-    glAttachShader(shaderProgram, fragShader);
+    glAttachShader(shaderProgram, fragmentShader);
     glLinkProgram(shaderProgram);
     glDeleteShader(vertexShader);
-    glDeleteShader(fragShader);
+    glDeleteShader(fragmentShader);
 }
 
 void ProcessInput(GLFWwindow* window)
@@ -67,8 +79,8 @@ void RenderScene(GLFWwindow* window)
         1, 2, 3
     };
     
-    unsigned int vertexShader = 0, fragShader = 0, shaderProgram = 0;
-    CreateShader(vertexShader, fragShader, shaderProgram);
+    unsigned int vertexShader = 0, fragmentShader = 0, shaderProgram = 0;
+    CreateShader(vertexShader, fragmentShader, shaderProgram);
     
     unsigned int VBO, VAO, EBO;
     glGenVertexArrays(1, &VAO);

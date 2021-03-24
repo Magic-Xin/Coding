@@ -29,6 +29,8 @@
 		6F83BE4425FF6C1B0085F274 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		6F83BE4725FF6C1B0085F274 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		6F83BE4925FF6C1B0085F274 /* glad.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = glad.c; sourceTree = "<group>"; };
+		6F83BE8B260ADC8E0085F274 /* VertexShader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = VertexShader.vs; sourceTree = "<group>"; };
+		6F83BE8C260ADD240085F274 /* FragmentShader.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = FragmentShader.fs; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,8 @@
 			children = (
 				6F83BE4725FF6C1B0085F274 /* main.cpp */,
 				6F83BE4925FF6C1B0085F274 /* glad.c */,
+				6F83BE8B260ADC8E0085F274 /* VertexShader.vs */,
+				6F83BE8C260ADD240085F274 /* FragmentShader.fs */,
 			);
 			path = "GLFW Triangle Sample";
 			sourceTree = "<group>";
