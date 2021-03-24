@@ -24,7 +24,7 @@ void CreateShader(unsigned int &vertexShader, unsigned int &fragmentShader, unsi
     std::ifstream vertexFile, fragmentFile;
     vertexFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
     fragmentFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
-    
+
     try {
         vertexFile.open(vertexPath);
         fragmentFile.open(fragmentPath);
@@ -142,7 +142,7 @@ int main(int argc, const char * argv[]) {
 #ifdef __APPLE__
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
-    
+
     GLFWwindow* window = glfwCreateWindow(winW, winH, "LearnOpenGL", NULL, NULL);
     if(!Init(window))
     {
