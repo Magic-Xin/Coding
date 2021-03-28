@@ -1,77 +1,53 @@
 #include <iostream>
+#include <algorithm>
 #include <cstdlib>
+#include <string>
+#include <vector>
+#define ll long long
 using namespace std;
 
-typedef struct Node
+int main()
 {
-    int data, num;
-    struct Node *prior, *next;
-} Node, *LL;
-
-void CL(LL &L){
-    L = (LL)malloc(sizeof(Node));
-    L->prior = L->next = L;
-    LL p, q;
-    p = L;
-    for(int i = 0 ; i < 666 ; i++){
-        if(i == 0){
-            p->num = i+1;
-            p->data = 1;
-            continue;
-        }
-        q = (LL)malloc(sizeof(Node));
-        q->data = 1;
-        q->num = i+1;
-        q->prior = p;
-        p->next = q;
-        p = q;
+    int n, m, temp, k = 0;
+    cin >> n >> m;
+    int a[n];
+    vector<int> b;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
     }
-    p->next = L;
-    L->prior = q;
-    return;
-}
-
-int count(LL &L){
-    if(!L) return 0;
-    int t = 0;
-    LL p;
-    p = L->next;
-    while(p != L){
-        if(p->data){
-            t++;
-        }
-        p = p->next;
+    sort(a, a + n);
+    for (int i = 0; i < m; i++)
+    {
+        cin >> temp;
+        b.push_back(temp);
     }
-    return t;
-}
+    sort(b.begin(), b.end());
 
-void sort(LL &L){
-    LL p, q;
-    p = L;
-    int t = 1;
-    while(count(L) != 1){
-        if(p->data){
-            if(t % 2 == 1){
-                p->data = 0;
-                p = p->next;
-            } else {
-                p = p->next;
+    int i = 0, j = 0;
+    for (i = 0; i < n; i++)
+    {
+        if(a[i] < b[0]) continue;
+        for (j = 0; j < b.size(); j++)
+        {
+            if(b[j] == a[i])
+            {
+                k++;
+                b.erase(b.begin()+j);
+                break;
             }
-            t++;
-        } else {
-            p = p->next;
+            if(b[j] > a[i])
+            {
+                if(b[j-1] < a[i])
+                {
+                    k++;
+                    b.erase(b.begin()+j-1);
+                    break;
+                }
+                break;
+            }
         }
     }
-    p = L;
-    while(!p->data) p = p->next;
-    cout << p->num << endl;
-    return;
-}
-
-
-int main(){
-    LL L;
-    CL(L);
-    sort(L);
+    cout << k << endl;
     return 0;
 }
