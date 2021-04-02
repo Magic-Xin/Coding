@@ -5,13 +5,28 @@
 
 int winW = 600, winH = 600;
 
+void DrawAxis()
+{
+    glBegin(GL_LINES);
+    glColor3f(1.0f, 0.0f, 0.0f);
+    glVertex3f(-10.0f, 0.0f, 0.0f);
+    glVertex3f(10.0f, 0.0f, 0.0f);
+    glColor3f(0.0f, 1.0f, 0.0f);
+    glVertex3f(0.0f, -10.0f, 0.0f);
+    glVertex3f(0.0f, 10.0f, 0.0f);
+    glColor3f(0.0f, 0.0f, 1.0f);
+    glVertex3f(0.0f, 0.0f, -10.0f);
+    glVertex3f(0.0f, 0.0f, 10.0f);
+    glEnd();
+}
+
 void DrawSphere(float radius, int step)
 {
     float x, y, z;
 
     for (float i = 0.0; i < PI; i += PI/step)
     {
-        glBegin(GL_LINE_LOOP);
+        glBegin(GL_TRIANGLE_STRIP);
         for (float j = 0.0; j < 2.0 * PI; j += PI/step)
         {
             x = radius * std::cos(j) * std::sin(i);
@@ -35,7 +50,9 @@ void RenderScene()
     glLoadIdentity();
     //gluLookAt(0.0f, 0.0f, 5.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
     gluLookAt(5.0f, 5.0f, 5.0f, 0.0f, 0.0f, 0.0f, -1.0f, 1.0f, -1.0f);
-    DrawSphere(2.0f, 20);
+    glColor4f(1.0f, 0.5f, 0.2f, 1.0f);
+    DrawSphere(2.0f, 10);
+    DrawAxis();
 
     glutSwapBuffers();
 }
@@ -58,6 +75,7 @@ int main(int argc, char * argv[]) {
     glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
     glutCreateWindow("Sphere Test");
 
+    glEnable(GL_DEPTH_TEST);
     glutReshapeFunc(Reshape);
     glutDisplayFunc(RenderScene);
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
