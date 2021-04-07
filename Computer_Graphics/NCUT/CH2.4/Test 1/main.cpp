@@ -10,6 +10,6 @@
 int main(int argc, char *argv[])
 {
     Drawing d(argc, argv);
-    d.init("Drawing Pad demo", 800, 800);
+    d.init("CH03 Test1", 800, 800);
     return 0;
 }
