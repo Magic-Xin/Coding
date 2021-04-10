@@ -4,3 +4,4 @@
 Build/
 .idea/
 out/
+cmake-build-debug
