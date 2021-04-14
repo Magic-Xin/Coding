@@ -5,8 +5,8 @@
 //  Created by MagicXin on 2021/3/11.
 //
 
-#ifndef Drawing_hpp
-#define Drawing_hpp
+#ifndef Drawing_h
+#define Drawing_h
 
 #include <cstdlib>
 #include <vector>
@@ -115,4 +115,4 @@ public:
     void ProcessMotion(int x, int y);
 };
 
-#endif /* Drawing_hpp */
+#endif /* Drawing_h */
