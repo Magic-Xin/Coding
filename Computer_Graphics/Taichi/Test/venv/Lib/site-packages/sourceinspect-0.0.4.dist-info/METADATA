@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: sourceinspect
+Version: 0.0.4
+Summary: A unified inspector for retriving source from Python objects
+Home-page: UNKNOWN
+Author: 彭于斌
+Author-email: 1931127624@qq.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Requires-Dist: dill
+
+
+SourceInspect
+=============
+
+The functionality is mainly same as ``inspect``, but fixing the ``OSError``
+when used in some non-standard shells.
+
+API reference
+-------------
+
+- ``sourceinspect.getsource(object)``
+- ``sourceinspect.getsourcelines(object)``
+- ``sourceinspect.getsourcefile(object)``
+
+
+Supported shells
+----------------
+
+- Python script (wrap ``dill.source``)
+- Python interactive shell (wrap ``dill.source``)
+- IPython advanced shell (wrap ``IPython.core.oinspect``)
+- Jupyter notebook (wrap ``IPython.core.oinspect``)
+- Blender scripting module (add hooks to ``inspect``)
+- Blender interactive mode (add hooks to ``code.py``)
+- Python IDLE file mode (wraps ``dill.source``)
+- Python IDLE interactive mode (need manually add hooks to ``code.py``)
+
+

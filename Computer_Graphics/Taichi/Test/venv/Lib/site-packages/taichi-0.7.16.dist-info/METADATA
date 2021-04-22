@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: taichi
+Version: 0.7.16
+Summary: The Taichi Programming Language
+Home-page: https://github.com/taichi-dev/taichi
+Author: Taichi developers
+Author-email: yuanmhu@gmail.com
+License: MIT
+Keywords: graphics,simulation
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Topic :: Software Development :: Compilers
+Classifier: Topic :: Multimedia :: Graphics
+Classifier: Topic :: Games/Entertainment :: Simulation
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: numpy
+Requires-Dist: pybind11 (>=2.5.0)
+Requires-Dist: sourceinspect (>=0.0.4)
+Requires-Dist: colorama
+Requires-Dist: astor
+
+UNKNOWN
+
+
