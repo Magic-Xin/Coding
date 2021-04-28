@@ -4,6 +4,9 @@
 #include "camera.hpp"
 #include "shader.hpp"
 
+//#define QUAD
+#define PI 3.14159265
+
 void framebuffer_size_callback(GLFWwindow *window, int w, int h);
 
 void mouse_callback(GLFWwindow *window, double xpos, double ypos);
@@ -11,6 +14,8 @@ void mouse_callback(GLFWwindow *window, double xpos, double ypos);
 void scroll_callback(GLFWwindow *window, double xoffset, double yoffset);
 
 void processInput(GLFWwindow *window);
+
+void DrawSphere(std::vector<glm::vec3> &vertices);
 
 const unsigned int winW = 1280;
 const unsigned int winH = 720;
@@ -57,6 +62,7 @@ int main(int argc, char *argv[]) {
 
     Shader shader("shader/vshader.vs", "shader/fshader.fs");
 
+#ifdef  QUAD
     float vertices[] = {
             // front
             -0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
@@ -110,6 +116,10 @@ int main(int argc, char *argv[]) {
             20, 21, 22,
             20, 23, 22  // right
     };
+#else
+    std::vector<glm::vec3> vertices;
+    DrawSphere(vertices);
+#endif
 
     unsigned int VBO, VAO, EBO;
     glGenVertexArrays(1, &VAO);
@@ -117,17 +127,22 @@ int main(int argc, char *argv[]) {
     glGenBuffers(1, &EBO);
     glBindVertexArray(VAO);
 
+#ifdef QUAD
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(index), index, GL_STATIC_DRAW);
+#else
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), &vertices.front(), GL_STATIC_DRAW);
+#endif
 
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *) 0);
 
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)(3 * sizeof   (float)));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *) (3 * sizeof(float)));
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
@@ -158,7 +173,11 @@ int main(int argc, char *argv[]) {
         shader.setVec3("viewPos", camera.Position);
         shader.setVec3("lightPos", lightPos);
 
+#ifdef QUAD
         glDrawElements(GL_TRIANGLES, sizeof(index), GL_UNSIGNED_INT, 0);
+#else
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, vertices.size());
+#endif
 
         glfwSwapBuffers(window);
         glfwPollEvents();
@@ -212,4 +231,26 @@ void mouse_callback(GLFWwindow *window, double xpos, double ypos) {
 
 void scroll_callback(GLFWwindow *window, double xoffset, double yoffset) {
     camera.ProcessMouseScroll(yoffset);
+}
+
+void DrawSphere(std::vector<glm::vec3> &vertices) {
+    float step = 20.0f, radius = 1.0f;
+    float x, y, z;
+    for (float i = 0.0; i < PI; i += PI / step) {
+        glBegin(GL_TRIANGLE_STRIP);
+        for (float j = 0.0; j < 2.0 * PI; j += PI / step) {
+            x = radius * std::cos(j) * std::sin(i);
+            y = radius * std::sin(j) * std::sin(i);
+            z = radius * std::cos(i);
+            vertices.push_back(glm::vec3(x, y, z));
+            vertices.push_back(glm::vec3(x, y, z));
+            x = radius * std::cos(j) * std::sin(i + PI / step);
+            y = radius * std::sin(j) * std::sin(i + PI / step);
+            z = radius * std::cos(i + PI / step);
+            vertices.push_back(glm::vec3(x, y, z));
+            vertices.push_back(glm::vec3(x, y, z));
+        }
+        glEnd();
+    }
+    return;
 }
