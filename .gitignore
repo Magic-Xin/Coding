@@ -2,7 +2,7 @@
 .vscode/
 .DS_Store
 .idea/
-.xcodeproj
+*.xcodeproj
 out/
 Build/
 cmake-build-debug
