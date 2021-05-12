@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.17)
-project(Sphere_test)
+project(CH_5_1)
 
 set(CMAKE_CXX_STANDARD 14)
 

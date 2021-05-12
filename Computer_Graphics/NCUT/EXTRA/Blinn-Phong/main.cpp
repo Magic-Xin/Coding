@@ -4,7 +4,7 @@
 #include "camera.hpp"
 #include "shader.hpp"
 
-//#define QUAD
+// #define QUAD
 #define PI 3.14159265
 
 void framebuffer_size_callback(GLFWwindow *window, int w, int h);
@@ -62,7 +62,7 @@ int main(int argc, char *argv[]) {
 
     Shader shader("shader/vshader.vs", "shader/fshader.fs");
 
-#ifdef  QUAD
+#ifdef QUAD
     float vertices[] = {
             // front
             -0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
@@ -147,7 +147,7 @@ int main(int argc, char *argv[]) {
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 
-    glm::vec3 lightPos(1.0f, 1.0f, 1.0f);
+    //glm::vec3 lightPos(1.0f, 1.0f, 1.0f);
 
     while (!glfwWindowShouldClose(window)) {
         float currentFrame = glfwGetTime();
@@ -171,6 +171,8 @@ int main(int argc, char *argv[]) {
         shader.setMat4("model", model);
 
         shader.setVec3("viewPos", camera.Position);
+
+        glm::vec3 lightPos(std::sin(currentFrame), std::cos(currentFrame), 1.0f);
         shader.setVec3("lightPos", lightPos);
 
 #ifdef QUAD
@@ -237,7 +239,6 @@ void DrawSphere(std::vector<glm::vec3> &vertices) {
     float step = 20.0f, radius = 1.0f;
     float x, y, z;
     for (float i = 0.0; i < PI; i += PI / step) {
-        glBegin(GL_TRIANGLE_STRIP);
         for (float j = 0.0; j < 2.0 * PI; j += PI / step) {
             x = radius * std::cos(j) * std::sin(i);
             y = radius * std::sin(j) * std::sin(i);
@@ -250,7 +251,5 @@ void DrawSphere(std::vector<glm::vec3> &vertices) {
             vertices.push_back(glm::vec3(x, y, z));
             vertices.push_back(glm::vec3(x, y, z));
         }
-        glEnd();
     }
-    return;
 }

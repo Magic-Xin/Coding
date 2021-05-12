@@ -1,5 +1,5 @@
 #include <cmath>
-#include <GLUT/GLUT.h>
+#include "GLUT/glut.h"
 
 #define PI 3.14259265
 
@@ -24,9 +24,9 @@ void DrawSphere(float radius, int step)
 {
     float x, y, z;
 
+    glBegin(GL_TRIANGLE_STRIP);
     for (float i = 0.0; i < PI; i += PI/step)
     {
-        glBegin(GL_TRIANGLE_STRIP);
         for (float j = 0.0; j < 2.0 * PI; j += PI/step)
         {
             x = radius * std::cos(j) * std::sin(i);
@@ -38,8 +38,8 @@ void DrawSphere(float radius, int step)
             z = radius * std::cos(i + PI/step);
             glVertex3f(x, y, z);
         }
-        glEnd();
     }
+    glEnd();
 }
 
 void RenderScene()
