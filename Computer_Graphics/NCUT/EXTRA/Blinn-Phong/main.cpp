@@ -149,6 +149,8 @@ int main(int argc, char *argv[]) {
 
     //glm::vec3 lightPos(1.0f, 1.0f, 1.0f);
 
+    glEnable(GL_CULL_FACE);
+
     while (!glfwWindowShouldClose(window)) {
         float currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
