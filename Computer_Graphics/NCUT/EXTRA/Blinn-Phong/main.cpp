@@ -21,8 +21,8 @@ void DrawSphere(std::vector<glm::vec3> &vertices);
 
 const char* windowTile = "Blinn-Phong";
 
-const unsigned int winW = 1500;
-const unsigned int winH = 1500;
+const unsigned int winW = 720;
+const unsigned int winH = 480;
 
 Camera camera(glm::vec3(0.0f, 0.0f, 5.0f));
 float lastX = winW / 2.0f;
