@@ -1,3 +1,5 @@
+#include <cstring>
+
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
@@ -17,8 +19,10 @@ void processInput(GLFWwindow *window);
 
 void DrawSphere(std::vector<glm::vec3> &vertices);
 
-const unsigned int winW = 1280;
-const unsigned int winH = 720;
+const char* windowTile = "Blinn-Phong";
+
+const unsigned int winW = 1500;
+const unsigned int winH = 1500;
 
 Camera camera(glm::vec3(0.0f, 0.0f, 5.0f));
 float lastX = winW / 2.0f;
@@ -39,7 +43,7 @@ int main(int argc, char *argv[]) {
 #endif
 
     glfwWindowHint(GLFW_SAMPLES, 4);
-    GLFWwindow *window = glfwCreateWindow(winW, winH, "Blinn-Phong", NULL, NULL);
+    GLFWwindow *window = glfwCreateWindow(winW, winH, windowTile, NULL, NULL);
     if (window == NULL) {
         std::cout << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
@@ -151,10 +155,22 @@ int main(int argc, char *argv[]) {
 
     glEnable(GL_CULL_FACE);
 
+    float initFrame = glfwGetTime();
+    int frameCount = 0;
+
     while (!glfwWindowShouldClose(window)) {
         float currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
+        frameCount++;
+
+        if(currentFrame - initFrame >= 1.0f) {
+            std::stringstream ss;
+            ss << windowTile << " (" << frameCount << "fps)";
+            glfwSetWindowTitle(window, ss.str().c_str());
+            frameCount = 0;
+            initFrame = currentFrame;
+        }
 
         processInput(window);
 
