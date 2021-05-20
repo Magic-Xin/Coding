@@ -1,7 +1,9 @@
 #include <cstdlib>
 #include <cstdio>
+#include <sstream>
 #include "GLUT/glut.h"
 
+const char *title = "Texture Demo";
 const int winW = 800;
 const int winH = 800;
 
@@ -10,7 +12,9 @@ const int num = 50;
 float zoom = -15.0f;
 float tilt = -90.0f;
 float spin = 0;
-bool twinkle = false;
+float initFrame = glutGet(GLUT_ELAPSED_TIME);
+int frameCount = 0;
+bool twinkle = true;
 GLuint texture[1];
 
 typedef struct {
@@ -158,8 +162,19 @@ void DrawHex() {
 }
 
 void RenderScene() {
+    float currentFrame = glutGet(GLUT_ELAPSED_TIME);
+    frameCount++;
+
     DrawHex();
     glutSwapBuffers();
+
+    if (currentFrame - initFrame >= 1000.0f) {
+        std::stringstream ss;
+        ss << title << " (" << frameCount << "fps)";
+        glutSetWindowTitle(ss.str().c_str());
+        frameCount = 0;
+        initFrame = currentFrame;
+    }
 }
 
 int main(int argc, char *argv[]) {
@@ -168,7 +183,7 @@ int main(int argc, char *argv[]) {
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowPosition(100, 100);
     glutInitWindowSize(winW, winH);
-    glutCreateWindow("Demo");
+    glutCreateWindow(title);
 
     glutReshapeFunc(Reshape);
     glutDisplayFunc(RenderScene);
@@ -179,5 +194,4 @@ int main(int argc, char *argv[]) {
     glutMainLoop();
 
     return 0;
-
 }
