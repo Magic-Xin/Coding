@@ -6,7 +6,7 @@
 #include "camera.hpp"
 #include "shader.hpp"
 
-// #define QUAD
+#define QUAD
 #define PI 3.14159265
 
 void framebuffer_size_callback(GLFWwindow *window, int w, int h);
