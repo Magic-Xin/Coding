@@ -11,7 +11,7 @@ GLuint texture[1];
 const int bmp_width = 512;
 const int bmp_height = 512;
 
-unsigned char* loadBMP(const char* filepath) {
+unsigned char* loadTexture(const char* filepath) {
     unsigned char* data;
 
     FILE * file;
@@ -39,9 +39,9 @@ void setupRC() {
     glGenTextures(1, texture);
 
 #ifdef QUADS
-    unsigned char* image = loadBMP("../data/QUADS.TGA");
+    unsigned char* image = loadTexture("../data/QUADS.TGA");
 #else
-    unsigned char* image = loadBMP("../data/TRIANGLES.TGA");
+    unsigned char* image = loadTexture("../data/TRIANGLES.TGA");
 #endif
 
     glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE , GL_MODULATE);
