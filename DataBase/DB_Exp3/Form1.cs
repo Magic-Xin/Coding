@@ -63,7 +63,7 @@ namespace DB_Exp3
                 case 0:
                 {
                     var dr =
-                        MessageBox.Show("确认删除：" + dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString(), "确认修改",
+                        MessageBox.Show("确认修改：" + dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString(), "确认修改",
                             MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                     break;
                 }
