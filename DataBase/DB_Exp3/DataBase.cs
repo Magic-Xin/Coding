@@ -4,64 +4,72 @@ using System.Data.SqlClient;
 
 namespace DB_Exp3
 {
-    class DataBase
+    internal class DataBase
     {
-        readonly string connectStr = "server=localhost;Trusted_Connection=true";
-        private bool running = false;
+        private const string ConnectStr = "server=localhost;Trusted_Connection=true";
+        private bool _running = false;
 
-        SqlConnection sqlConnection;
+        private SqlConnection _sqlConnection;
 
-        public bool loginDB()
+        public DataBase()
         {
-            if (!running)
-            {
-                sqlConnection = new SqlConnection(connectStr);
-
-                sqlConnection.Open();
-                running = true;
-
-                return true;
-            }
-            return false;
+            _running = false;
         }
+
+        public bool LoginDb()
+        {
+            if (_running) return false;
+            
+            _sqlConnection = new SqlConnection(ConnectStr);
+            try
+            {
+                _sqlConnection.Open();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return false;
+            }
+
+            _running = true;
+            return true;
+        }
+
         public DataSet DataSelect(string commandText)
         {
-            if (!running)
-            {
-                return null;
-            }
+            if (!_running) return null;
 
-            DataSet ds = new DataSet();
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(commandText, sqlConnection);
+            var ds = new DataSet();
+            var sqlDataAdapter = new SqlDataAdapter(commandText, _sqlConnection);
             sqlDataAdapter.Fill(ds);
 
             return ds;
         }
+
         public string DataDelete(string commandText)
         {
-            SqlCommand sqlCommand = new SqlCommand(commandText, sqlConnection);
-            int str = sqlCommand.ExecuteNonQuery();
+            var sqlCommand = new SqlCommand(commandText, _sqlConnection);
+            var str = sqlCommand.ExecuteNonQuery();
 
             return str.ToString();
         }
+
         public string DataUpdate(string commandText)
         {
-            SqlCommand sqlCommand = new SqlCommand(commandText, sqlConnection);
-            int str = sqlCommand.ExecuteNonQuery();
+            var sqlCommand = new SqlCommand(commandText, _sqlConnection);
+            var str = sqlCommand.ExecuteNonQuery();
 
             return str.ToString();
         }
-        public bool logoutDB()
+
+        public bool LogoutDb()
         {
-            if (running)
-            {
-                sqlConnection.Close();
-                running = false;
+            if (!_running) return false;
+            
+            _sqlConnection.Close();
+            _running = false;
 
-                return true;
-            }
-            return false;
+            return true;
         }
-
     }
 }
