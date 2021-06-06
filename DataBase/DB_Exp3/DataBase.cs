@@ -7,7 +7,7 @@ namespace DB_Exp3
     internal class DataBase
     {
         private const string ConnectStr = "server=localhost;Trusted_Connection=true";
-        private bool _running = false;
+        private bool _running;
 
         private SqlConnection _sqlConnection;
 

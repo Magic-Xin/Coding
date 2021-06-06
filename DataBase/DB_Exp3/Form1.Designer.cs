@@ -30,19 +30,18 @@ namespace DB_Exp3
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.Column2 = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -52,7 +51,6 @@ namespace DB_Exp3
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
             this.Column2});
             this.dataGridView1.Location = new System.Drawing.Point(382, 12);
             this.dataGridView1.Name = "dataGridView1";
@@ -61,26 +59,8 @@ namespace DB_Exp3
             this.dataGridView1.Size = new System.Drawing.Size(864, 640);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "修改";
-            this.Column1.MinimumWidth = 10;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Text = "修改";
-            this.Column1.UseColumnTextForButtonValue = true;
-            this.Column1.Width = 80;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "删除";
-            this.Column2.MinimumWidth = 10;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Text = "删除";
-            this.Column2.UseColumnTextForButtonValue = true;
-            this.Column2.Width = 80;
+            this.dataGridView1.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridView1_CellBeginEdit);
+            this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
             // 
             // groupBox1
             // 
@@ -138,6 +118,16 @@ namespace DB_Exp3
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "选择操作";
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(116, 357);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(120, 37);
+            this.button4.TabIndex = 7;
+            this.button4.Text = "查询";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
@@ -186,15 +176,15 @@ namespace DB_Exp3
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button4
+            // Column2
             // 
-            this.button4.Location = new System.Drawing.Point(116, 357);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(120, 37);
-            this.button4.TabIndex = 7;
-            this.button4.Text = "查询";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.Column2.HeaderText = "删除";
+            this.Column2.MinimumWidth = 10;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Text = "删除";
+            this.Column2.UseColumnTextForButtonValue = true;
+            this.Column2.Width = 80;
             // 
             // Form1
             // 
@@ -226,11 +216,10 @@ namespace DB_Exp3
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DataGridViewButtonColumn Column1;
-        private System.Windows.Forms.DataGridViewButtonColumn Column2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.DataGridViewButtonColumn Column2;
     }
 }
 
