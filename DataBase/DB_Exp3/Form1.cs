@@ -99,6 +99,9 @@ namespace DB_Exp3
             }
         }
 
+        /// <summary>
+        /// 通过 DataGridView 更新 DataBase
+        /// </summary>
         private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             _cellTempValue = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
@@ -128,7 +131,6 @@ namespace DB_Exp3
             {
                 MessageBox.Show(ecp.ToString());
             }
-
         }
     }
 }
