@@ -1,20 +1,21 @@
 import numpy as np
 from mayavi import mlab
+from plyfile import PlyData
 
 
 def show_mayavi(x, y, z, _x):
     mlab.figure(bgcolor=(1, 1, 1))
     mlab.outline(color=(0, 0, 0))
 
-    xx = np.linspace(-10, 10, 100)
-    yy = np.linspace(-10, 10, 100)
-    xx, yy = np.meshgrid(xx, yy)
-    zz = _x[0, 0] * xx + _x[1, 0] * yy + _x[2, 0]
+    def f(a, b):
+        return _x[0, 0] * a + _x[1, 0] * b + _x[2, 0]
 
-    mlab.surf(xx, yy, zz, color=(0, 0, 1), warp_scale=0.3, representation='wireframe', line_width=0.5)
-    mlab.points3d(x, y, z, color=(1, 0, 0), scale_factor=.25)
+    xx, yy = np.mgrid[-10:10:50j, -10:10:50j]
 
-    axes = mlab.axes(color=(0, 0, 0), nb_labels=5)
+    mlab.surf(xx, yy, f, color=(0, 0, 1), warp_scale=.5, representation='wireframe', line_width=0.5)
+    mlab.points3d(x, y, z, color=(1, 0, 0), scale_factor=.05)
+
+    axes = mlab.axes(color=(0, 0, 0), nb_labels=5, ranges=[10, 10, -10, 10, -20, 20])
     axes.title_text_property.color = (0.0, 0.0, 0.0)
     axes.title_text_property.font_family = 'times'
     axes.label_text_property.color = (0.0, 0.0, 0.0)
@@ -29,12 +30,20 @@ def random_point(a, b, c):
     x = np.random.uniform(-10, 10, size=100)
     y = np.random.uniform(-10, 10, size=100)
     z = (a * x + b * y + c) + np.random.normal(-1, 1, size=100)
-
     return x, y, z
 
 
-def gen_data():
-    x, y, z = random_point(1, 1, 1)
+def read_ply(filepath):
+    _data = PlyData.read(filepath)
+    _pc = _data['vertex'].data
+    _array = np.array([_pc['x'], _pc['y'], _pc['z']])
+    x = _array[0]
+    y = _array[1]
+    z = _array[2]
+    return x, y, z
+
+
+def LSM(x, y, z):
     a = 0
     _a = np.ones((100, 3))
     for i in range(0, 100):
@@ -54,11 +63,14 @@ def gen_data():
 
     r = 0
     for i in range(0, 100):
-        r = r + (_x[0, 0] * x[i] + _x[1, 0] * y[i] + _x[2, 0] - z[i]) ** 2
+        r += (_x[0, 0] * x[i] + _x[1, 0] * y[i] + _x[2, 0] - z[i]) ** 2
     print('方差为：%.*f' % (3, r))
 
-    show_mayavi(x, y, z, _x)
+    return _x
 
 
 if __name__ == '__main__':
-    gen_data()
+    # _x, _y, _z = random_point(1, 1, 0)
+    _x, _y, _z = read_ply('./1.ply')
+    _lsm = LSM(_x, _y, _z)
+    show_mayavi(_x, _y, _z, _lsm)
