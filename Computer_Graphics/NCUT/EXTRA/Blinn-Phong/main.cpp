@@ -1,12 +1,10 @@
-#include <cstring>
-
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
 #include "camera.hpp"
 #include "shader.hpp"
 
-#define QUAD
+//#define QUAD
 #define PI 3.14159265
 
 void framebuffer_size_callback(GLFWwindow *window, int w, int h);
@@ -64,7 +62,7 @@ int main(int argc, char *argv[]) {
 
     glEnable(GL_DEPTH_TEST);
 
-    Shader shader("shader/vshader.vs", "shader/fshader.fs");
+    Shader shader("shader/vshader.glsl", "shader/fshader.glsl");
 
 #ifdef QUAD
     float vertices[] = {
