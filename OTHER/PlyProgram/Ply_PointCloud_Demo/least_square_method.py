@@ -1,76 +1,74 @@
 import numpy as np
 from mayavi import mlab
-from plyfile import PlyData
+import matplotlib.pyplot as plt
 
 
-def show_mayavi(x, y, z, _x):
-    mlab.figure(bgcolor=(1, 1, 1))
+def show_matplotlib(x, y, z, res):
+    plt.figure()
+    ax = plt.subplot(111, projection='3d')
+    ax.scatter(x, y, z, color='b')
+
+    x_lim = ax.get_xlim()
+    y_lim = ax.get_ylim()
+    X, Y = np.meshgrid(np.arange(x_lim[0], x_lim[1]),
+                       np.arange(y_lim[0], y_lim[1]))
+    Z = np.zeros(X.shape)
+    for r in range(X.shape[0]):
+        for c in range(X.shape[1]):
+            Z[r, c] = res[0] * X[r, c] + res[1] * Y[r, c] + res[2]
+    ax.plot_wireframe(X, Y, Z, color='k')
+
+    ax.set_xlabel('x')
+    ax.set_ylabel('y')
+    ax.set_zlabel('z')
+    plt.show()
+
+
+def show_mayavi(x, y, z, res):
+    fig = mlab.figure(bgcolor=(1, 1, 1), size=(640, 480))
     mlab.outline(color=(0, 0, 0))
 
-    def f(a, b):
-        return _x[0, 0] * a + _x[1, 0] * b + _x[2, 0]
+    res = np.asarray(res)
+    xx, yy = np.mgrid[min(z):max(z):50j, min(z):max(z):50j]
+    zz = res[0] * xx + res[1] * yy + res[2]
 
-    xx, yy = np.mgrid[-10:10:50j, -10:10:50j]
+    mlab.surf(xx, yy, zz, color=(0, 0, 1), warp_scale=.25, representation='wireframe', line_width=0.5)
+    mlab.points3d(x, y, z, color=(1, 0, 0), mode='point', figure=fig)
 
-    mlab.surf(xx, yy, f, color=(0, 0, 1), warp_scale=.5, representation='wireframe', line_width=0.5)
-    mlab.points3d(x, y, z, color=(1, 0, 0), scale_factor=.05)
-
-    axes = mlab.axes(color=(0, 0, 0), nb_labels=5, ranges=[10, 10, -10, 10, -20, 20])
+    axes = mlab.axes(color=(0, 0, 0), nb_labels=5)
     axes.title_text_property.color = (0.0, 0.0, 0.0)
     axes.title_text_property.font_family = 'times'
     axes.label_text_property.color = (0.0, 0.0, 0.0)
     axes.label_text_property.font_family = 'times'
     mlab.gcf().scene.parallel_projection = True
     mlab.orientation_axes()
-
     mlab.show()
 
 
 def random_point(a, b, c):
-    x = np.random.uniform(-10, 10, size=100)
-    y = np.random.uniform(-10, 10, size=100)
-    z = (a * x + b * y + c) + np.random.normal(-1, 1, size=100)
-    return x, y, z
-
-
-def read_ply(filepath):
-    _data = PlyData.read(filepath)
-    _pc = _data['vertex'].data
-    _array = np.array([_pc['x'], _pc['y'], _pc['z']])
-    x = _array[0]
-    y = _array[1]
-    z = _array[2]
+    x = np.random.uniform(-10, 10, size=50)
+    y = np.random.uniform(-10, 10, size=50)
+    z = (a * x + b * y + c) + np.random.normal(-1, 1, size=50)
     return x, y, z
 
 
 def LSM(x, y, z):
-    a = 0
-    _a = np.ones((100, 3))
-    for i in range(0, 100):
-        _a[i, 0] = x[a]
-        _a[i, 1] = y[a]
-        a = a + 1
-
-    b = np.zeros((100, 1))
-    a = 0
-    for i in range(0, 100):
-        b[i, 0] = z[a]
-        a = a + 1
-
-    _aT = _a.T
-    _x = np.dot(np.dot(np.linalg.inv(np.dot(_a.T, _a)), _a.T), b)
-    print('平面拟合结果为：z = %.3f * x + %.3f * y + %.3f' % (_x[0, 0], _x[1, 0], _x[2, 0]))
-
-    r = 0
-    for i in range(0, 100):
-        r += (_x[0, 0] * x[i] + _x[1, 0] * y[i] + _x[2, 0] - z[i]) ** 2
-    print('方差为：%.*f' % (3, r))
-
-    return _x
+    tmp_a = []
+    tmp_b = []
+    for i in range(len(x)):
+        tmp_a.append([x[i], y[i], 1])
+        tmp_b.append(z[i])
+    bt = np.matrix(tmp_b).T
+    a = np.matrix(tmp_a)
+    res = (a.T * a).I * a.T * bt
+    print('平面拟合结果为：z = %.3f * x + %.3f * y + %.3f' % (res[0], res[1], res[2]))
+    return res
 
 
 if __name__ == '__main__':
-    # _x, _y, _z = random_point(1, 1, 0)
-    _x, _y, _z = read_ply('./1.ply')
+    _x, _y, _z = random_point(2, 3, 5)
     _lsm = LSM(_x, _y, _z)
+
+    show_matplotlib(_x, _y, _z, _lsm)
     show_mayavi(_x, _y, _z, _lsm)
+

@@ -17,7 +17,7 @@ def draw_ply():
     y = ply_array[1]
     z = ply_array[2]
 
-    mlab.points3d(x, y, z, colormap='spectral', scale_factor=.03)
+    mlab.points3d(x, y, z, scale_factor=.02)
     mlab.show()
 
 
