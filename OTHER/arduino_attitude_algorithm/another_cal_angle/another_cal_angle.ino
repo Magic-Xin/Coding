@@ -4,7 +4,7 @@
 SF fusion;
 
 float gx, gy, gz, ax, ay, az, mx, my, mz;
-float pitch, roll, yaw;
+float* quat;
 float deltat;
 
 void setup() {
@@ -20,8 +20,8 @@ void setup() {
   IMU.setAccelOffset(-0.019423, -0.012760, -0.007454);
   IMU.setAccelSlope (1.002830, 0.999749, 1.008102);
 
-  IMU.setGyroFS(3);
-  IMU.setGyroODR(4);
+  IMU.setGyroFS(1);
+  IMU.setGyroODR(5);
   IMU.setGyroOffset (-1.489929, -0.464600, 0.043884);
   IMU.setGyroSlope (1.166259, 1.144730, 1.149710);
 
@@ -47,14 +47,14 @@ void loop() {
 
     fusion.MadgwickUpdate(gx, gy, gz, ax, ay, az, mx, my, mz, deltat);
 
-    roll = fusion.getRollRadians();
-    pitch = fusion.getPitchRadians();
-    yaw = fusion.getYawRadians();
+    quat = fusion.getQuat();
 
-    Serial.print(roll);
+    Serial.print(quat[0]);
     Serial.print("\t");
-    Serial.print(pitch);
+    Serial.print(quat[1]);
     Serial.print("\t");
-    Serial.println(yaw);
+    Serial.print(quat[2]);
+    Serial.print("\t");
+    Serial.println(quat[3]);
   }
 }

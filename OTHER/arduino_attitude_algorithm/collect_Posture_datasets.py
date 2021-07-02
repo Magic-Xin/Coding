@@ -24,13 +24,13 @@ def read_serial(port_name, port_number):
             else:
                 s_format_output += str(s_format[i]).split(':')
         s_format_trans = [float(i) for i in s_format_output]
-        if len(s_format_trans) == 3:
+        if len(s_format_trans) == 4:
             visualization_taichi.transform(s_format_trans)
 
 
 if __name__ == '__main__':
     try:
-        _thread.start_new_thread(read_serial, ('/dev/cu.usbmodem142201', 9600))
+        _thread.start_new_thread(read_serial, ('/dev/cu.usbmodem142401', 9600))
         visualization_taichi.main()
     except Exception as e:
         print(str(e))
