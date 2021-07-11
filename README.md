@@ -8,6 +8,4 @@
 
 <b>由于他人使用此 repo 内代码所引发的商业、学术争端，均与本人无关</b>
 
-[![Magic-Xin's github stats](https://github-readme-stats.vercel.app/api?username=Magic-Xin&show_icons=true&count_private=true)](https://github.com/anuraghazra/github-readme-stats)
-
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FMagic-Xin%2FCoding.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FMagic-Xin%2FCoding?ref=badge_large)
