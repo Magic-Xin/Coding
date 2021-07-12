@@ -38,7 +38,7 @@ def plotResult2(dataSet, weight, bias):
     plt.show()
 
 if __name__ == '__main__':
-    dataSet=np.array([[-1,0,1],[0,1,1],[1,0,-1],[0,-1,-1]])
+    dataSet=np.array([[0,0,1],[0,1,1],[1,0,1],[1,1,1]])
 
     w,b=perceptron(dataSet)
     print('w:',w,'b:',b)
