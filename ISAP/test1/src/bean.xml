@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="bookService" class="book.service.impl.BookServiceImpl"></bean>
+    <bean id="staticFactory" class="book.factory.StaticFactory" factory-method="getBookService"></bean>
+    <bean id="insFactory" class="book.factory.InsFactory"></bean>
+    <bean id="instanceFactory" factory-bean="insFactory" factory-method="getBookService"></bean>
+</beans>

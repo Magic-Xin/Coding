@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--    <bean id="studentService" class="shumei.service.impl.StudentServiceImpl"></bean>-->
+<!--    <bean id="staticFactory" class="shumei.factory.StaticFactory" factory-method="getStudentService"></bean>-->
+    <bean id="insFactory" class="shumei.factory.InsFactory" ></bean>
+    <bean id="instanceFactory" factory-bean="insFactory" factory-method="getStudentService"></bean>
+</beans>
