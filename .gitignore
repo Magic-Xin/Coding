@@ -8,3 +8,4 @@ Build/
 cmake-build-debug
 env
 venv
+target/
