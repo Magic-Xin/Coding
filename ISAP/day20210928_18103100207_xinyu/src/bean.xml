@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="studentService" class="shumei.service.impl.StudentServiceImpl">
+        <constructor-arg name="jszh" value="ncut20210928"/>
+        <constructor-arg name="xm" value="test"/>
+        <constructor-arg name="zym" value="数媒"/>
+    </bean>
+
+    <bean id="studentService2" class="shumei.service.impl.StudentServiceImpl2">
+        <property name="jszh" value="ncut20210928"/>
+        <property name="xm" value="test2"/>
+        <property name="zym" value="数媒"/>
+        <property name="date" ref="date"/>
+    </bean>
+
+    <bean id="date" class="java.util.Date"/>
+</beans>
