@@ -1,9 +1,0 @@
-astor==0.8.1
-colorama==0.4.4
-dill==0.3.4
-numpy==1.20.3
-pybind11==2.6.2
-pyserial==3.5
-sourceinspect==0.0.4
-taichi==0.7.21
-taichi-tina==0.1.1
