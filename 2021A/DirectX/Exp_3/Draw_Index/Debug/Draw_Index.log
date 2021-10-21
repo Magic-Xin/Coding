@@ -1,1 +1,8 @@
-﻿
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: 中间目录(Debug\)包含从另一个项目(Draw_Index.vcxproj)共享的文件。   这会导致错误的清除和重新生成行为。
+  D3DObject.cpp
+  D3DUT.cpp
+  Draw_Index.cpp
+  MyD3D.cpp
+  Object_Index.cpp
+  正在生成代码...
+  Draw_Index.vcxproj -> C:\Users\xyu20\Desktop\Coding\2021A\DirectX\Exp_3\Debug\Exp_3.exe
