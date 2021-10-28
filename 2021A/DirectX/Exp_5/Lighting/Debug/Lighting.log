@@ -1,0 +1,9 @@
+﻿  D3DObject.cpp
+  D3DUT.cpp
+  Light.cpp
+  main.cpp
+  MyD3D.cpp
+C:\Users\xyu20\Desktop\Coding\2021A\DirectX\Exp_5\Lighting\MyD3D.cpp(94,20): warning C4305: “参数”: 从“double”到“float”截断
+  Object_Matrial.cpp
+  正在生成代码...
+  Lighting.vcxproj -> C:\Users\xyu20\Desktop\Coding\2021A\DirectX\Exp_5\Debug\Lighting.exe
