@@ -17,7 +17,7 @@ cv::Mat SaltNoise(cv::Mat srcImg, int noise_num) {
 }
 
 int main() {
-    cv::Mat srcImg = cv::imread("../img.jpeg");
+    cv::Mat srcImg = cv::imread("../img.jpg");
 
     if (!srcImg.data) {
         std::cout << "Read image failed!" << std::endl;
