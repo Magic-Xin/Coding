@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="shumei.dao.StudentDao">
+    <select id="findStudentByJszh" resultType="shumei.domain.Student">
+        select jszh, xm from student where jszh='10000001'
+    </select>
+
+    <select id="findStudentByParam" parameterType="string" resultType="shumei.domain.Student">
+        select jszh, xm from student where jszh=#{jszh}
+    </select>
+
+    <select id="saveStudent" parameterType="string" resultType="shumei.domain.Student">
+        insert into student(jszh, xm) values (#{jszh},#{xm})
+    </select>
+    
+    <select id="findStudentByQuery" parameterType="shumei.query.StudentQuery" resultType="shumei.domain.Student">
+        select jszh, xm, zym from student where xm like '%${student.xm}%' and jszh in (select jszh from jyls where isbn in (select isbn from book where sm=#{bookName}));
+    </select>
+
+</mapper>
