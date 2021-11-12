@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Book">
+    <resultMap id="bookList" type="shumei.domain.Book">
+        <id column="isbn" property="isbn"/>
+        <result column="sm" property="sm"/>
+        <result column="zz" property="zz"/>
+        <result column="jszh" property="jzsh"/>
+    </resultMap>
+
+    <select id="findBookByISBN" parameterType="string" resultType="shumei.domain.Book">
+        select isbn,sm,zz,cbs from book where isbn=#{isbn}
+    </select>
+
+    <select id="findBookBySm" parameterType="string" resultType="shumei.domain.Book">
+        select isbn,sm,zz,cbs from book where sm=#{sm}
+    </select>
+
+    <select id="findBookBySmLike" parameterType="string" resultMap="bookList">
+        select isbn,sm,zz,cbs from book where sm like #{sm}
+    </select>
+
+    <select id="addBook" parameterType="map">
+        insert into book(isbn, sm, zz, cbs) values (#{isbn}, #{sm}, #{zz}, #{cbs})
+    </select>
+
+    <select id="updateBook" parameterType="map">
+        update book set sm=#{sm}, zz=#{zz}, cbs=#{cbs} where isbn=#{isbn}
+    </select>
+
+    <select id="deleteBook" parameterType="string">
+        delete from book where isbn=#{isbn}
+    </select>
+
+    <select id="findBookByStudenNameLike" parameterType="string" resultMap="bookList">
+        select isbn,sm,zz,cbs from book where isbn in (select distinct isbn from jyls where jszh in (select jszh from student where xm like #{xm}));
+    </select>
+</mapper>
