@@ -4,7 +4,7 @@ envisage==6.0.0
 importlib-metadata==4.5.0
 importlib-resources==5.1.4
 mayavi==4.7.3
-numpy==1.20.3
+numpy==1.21.0
 plyfile==0.7.4
 pyface==7.3.0
 Pygments==2.9.0
