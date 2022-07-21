@@ -1,0 +1,12 @@
+C:\Users\xyu20\RiderProjects\ComputerNetwork_Exp3\Data\bin\Debug\net6.0\Data.deps.json
+C:\Users\xyu20\RiderProjects\ComputerNetwork_Exp3\Data\bin\Debug\net6.0\Data.dll
+C:\Users\xyu20\RiderProjects\ComputerNetwork_Exp3\Data\bin\Debug\net6.0\Data.pdb
+C:\Users\xyu20\RiderProjects\ComputerNetwork_Exp3\Data\obj\Debug\net6.0\Data.csproj.AssemblyReference.cache
+C:\Users\xyu20\RiderProjects\ComputerNetwork_Exp3\Data\obj\Debug\net6.0\Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\xyu20\RiderProjects\ComputerNetwork_Exp3\Data\obj\Debug\net6.0\Data.AssemblyInfoInputs.cache
+C:\Users\xyu20\RiderProjects\ComputerNetwork_Exp3\Data\obj\Debug\net6.0\Data.AssemblyInfo.cs
+C:\Users\xyu20\RiderProjects\ComputerNetwork_Exp3\Data\obj\Debug\net6.0\Data.csproj.CoreCompileInputs.cache
+C:\Users\xyu20\RiderProjects\ComputerNetwork_Exp3\Data\obj\Debug\net6.0\Data.dll
+C:\Users\xyu20\RiderProjects\ComputerNetwork_Exp3\Data\obj\Debug\net6.0\refint\Data.dll
+C:\Users\xyu20\RiderProjects\ComputerNetwork_Exp3\Data\obj\Debug\net6.0\Data.pdb
+C:\Users\xyu20\RiderProjects\ComputerNetwork_Exp3\Data\obj\Debug\net6.0\ref\Data.dll

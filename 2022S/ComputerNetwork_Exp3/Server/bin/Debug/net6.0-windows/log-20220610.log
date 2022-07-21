@@ -1,0 +1,22 @@
+2022/6/10 16:37:10 2022/6/10 16:37:10 Client 127.0.0.1:27887 connected
+Connect
+2022/6/10 16:37:22 2022/6/10 16:37:22 Client 127.0.0.1:27904 connected
+Connect
+2022/6/10 16:37:23 2022/6/10 16:37:23 Client 127.0.0.1:27906 connected
+Connect
+Public,Hi to ALL
+Private,Hi to Client 3
+2022/6/10 16:37:41 2022/6/10 16:37:41 Client 127.0.0.1:27930 connected
+Disconnect
+2022/6/10 16:37:44 Client3 Error! Disconnect!
+2022/6/10 16:38:25 2022/6/10 16:38:25 Client 127.0.0.1:28000 connected
+Connect
+2022/6/10 16:38:28 2022/6/10 16:38:28 Client 127.0.0.1:28006 connected
+Connect
+2022/6/10 16:38:32 2022/6/10 16:38:32 Client 127.0.0.1:28012 connected
+Connect
+Private,Hi to Client1
+Public,Hi to All
+Disconnect
+Disconnect
+Disconnect
